@@ -8,7 +8,7 @@
 
 DeclareAutoPackage( "crystcat", "1.0.1", function()
   if TestPackageAvailability( "cryst", "4.0" ) = fail then
-    Info( InfoWarning, 1, "package ``crystcat'' requires package ``cryst''" );
+    Info( InfoWarning, 3, "package ``crystcat'' requires package ``cryst''" );
      return false;
   else
      return true;
