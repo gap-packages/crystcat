@@ -542,21 +542,20 @@ gap> T := CharTableQClass( 4, 20, 3 );;
 gap> Display( T );
 CharTableQClass( 4, 20, 3 )
 
-     2  2  1  1  2  2  2
-     3  1  1  1  1  .  .
+     2  2  2  1  1  2  2
+     3  1  .  1  1  .  1
 
-       1a 3a 6a 2a 4a 4b
-    1P 1a 3a 2a 6a 4a 4b
-    2P 1a 3a 3a 1a 2a 2a
-    3P 1a 1a 2a 2a 4b 4a
-    5P 1a 3a 6a 2a 4a 4b
+       1a 4a 6a 3a 4b 2a
+    2P 1a 2a 3a 3a 2a 1a
+    3P 1a 4b 2a 1a 4a 2a
+    5P 1a 4a 6a 3a 4b 2a
 
 X.1     1  1  1  1  1  1
-X.2     1  1  1  1 -1 -1
-X.3     1  1 -1 -1  A -A
-X.4     1  1 -1 -1 -A  A
-X.5     2 -1  1 -2  .  .
-X.6     2 -1 -1  2  .  .
+X.2     1 -1  1  1 -1  1
+X.3     1  A -1  1 -A -1
+X.4     1 -A -1  1  A -1
+X.5     2  .  1 -1  . -2
+X.6     2  . -1 -1  .  2
 
 A = E(4)
   = ER(-1) = i
