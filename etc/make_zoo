@@ -1,4 +1,4 @@
-#!/bin/tcsh
+#!/bin/sh
 
 # remove old archive
 rm crystcat.zoo
@@ -20,14 +20,14 @@ echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/crystcat.
 echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/make_doc
 echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/init.g
 echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/read.g
-#echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/README
+echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/README
 echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/grp/crystcat.grp
-foreach file (crystcat/lib/*.g[di])
+for file in crystcat/lib/*.g[di] ; do
   echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo $file
-end
-foreach file (crystcat/htm/*.htm)
+done
+for file in crystcat/htm/*.htm ; do
   echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo $file
-end
+done
 
 # check result
 cd crystcat/etc
