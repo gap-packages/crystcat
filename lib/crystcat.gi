@@ -1864,7 +1864,7 @@ InstallGlobalFunction( SpaceGroupOnLeftBBNWZ, function ( arg )
 
     # Construct the space group.
     G := CR_SpaceGroup( param );
-    G := AsAffineCrystGroupOnLeft( G );
+    SetIsAffineCrystGroupOnLeft( G, true );
     AddTranslationBasis( G, IdentityMat( param[1] ) );
     SetIsSpaceGroup( G, true );
     SetIsSymmorphicSpaceGroup( G, param[5]=1 );
@@ -1937,7 +1937,7 @@ InstallGlobalFunction( SpaceGroupOnRightBBNWZ, function( arg )
     cr.fpGroup := F / rels;
 
     # Return the transposed group.
-    T := AsAffineCrystGroupOnRight( T );
+    SetIsAffineCrystGroupOnRight( T, true );
     AddTranslationBasis( T, IdentityMat( param[1] ) );
     SetIsSpaceGroup( T, true );
     SetIsSymmorphicSpaceGroup( T, param[5]=1 );
