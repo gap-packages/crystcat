@@ -5,8 +5,8 @@
 #Y  Copyright (C)  1997,  Lehrstuhl D fuer Mathematik,  RWTH Aachen,  Germany
 ##
 
-DeclareAutoPackage( "crystcat", "0.9", function()
-  if TestPackageAvailability( "cryst", "0.9" ) = fail then
+DeclareAutoPackage( "crystcat", "1.0", function()
+  if TestPackageAvailability( "cryst", "4.0" ) = fail then
     Info( InfoWarning, 1, "package ``crystcat'' requires package ``cryst''" );
      return false;
   else
