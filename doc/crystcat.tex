@@ -5,6 +5,7 @@
 \Chapter{The Crystallographic Groups Catalog}
 
 \index{crystallographic groups}
+\index{crystcat}
 
 This package provides a catalog of crystallographic groups of
 dimensions 2, 3, and 4 which covers most of the data contained 
@@ -12,10 +13,10 @@ in the book ``Crystallographic groups of four-dimensional space''
 \cite{BBNWZ78}.  It has been brought into {\GAP} format by Volkmar
 Felsch.
 
-The {\GAP} 4 version of the catalog requires the share package CrystGap,
+The {\GAP} 4 version of the catalog requires the package {\Cryst},
 which is loaded automatically. The benefit of this is that space groups 
 extracted from the catalog now have the rich set of methods provided
-by CrystGap at their disposal, and are no longer dumb lists of generators.
+by {\Cryst} at their disposal, and are no longer dumb lists of generators.
 Moreover, space groups are now fully supported in both the representation
 acting from the left and the representation acting from the right.
 
@@ -169,8 +170,8 @@ representation. Initially, the default is `RightAction'.
 
 The space groups constructed from the catalog are matrix groups, which
 in addition have the property `IsAffineCrystGroupOnLeft' (or
-`IsAffineCrystGroupOnRight', respectively). The share package CrystGap
-provides methods to compute with such groups. CrystGap is necessary
+`IsAffineCrystGroupOnRight', respectively). The package {\Cryst}
+provides methods to compute with such groups. {\Cryst} is necessary
 for any serious computation with space groups, because the support of
 plain {\GAP} for infinite matrix groups (such as space groups) is very
 limited.
@@ -884,8 +885,8 @@ gap> DisplaySpaceGroupGenerators( "P61" );
 returns a representative, <S>, of the space group type specified by 
 the arguments. <S> is returned in the form of an `AffineCrystGroupOnLeft',
 which acts from the left on column vectors (see also the description
-of the `DisplaySpaceGroupGenerators' function above). The share package
-CrystGap provides methods for the computation with space groups.
+of the `DisplaySpaceGroupGenerators' function above). The package
+{\Cryst} provides methods for the computation with space groups.
 
 \beginexample
 gap> S := SpaceGroupOnLeftBBNWZ( "P61" );
@@ -935,8 +936,8 @@ the arguments. <T> is returned in the form of an `AffineCrystGroupOnRight',
 which acts from the right on row vectors. The generators of <T> are the 
 transposed generators (in the same order) of the corresponding 
 `SpaceGroupOnLeftBBNWZ', <S>, specified by the same arguments.
-The space group <S> is also accepted as argument. The share package
-CrystGap provides methods for the computation with space groups.
+The space group <S> is also accepted as argument. The package
+{\Cryst} provides methods for the computation with space groups.
 
 \beginexample
 gap> T := SpaceGroupOnRightBBNWZ( S );

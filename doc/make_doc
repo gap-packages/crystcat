@@ -5,3 +5,4 @@ tex manual
 tex manual
 ../../../etc/convert.pl -c -i -n crystcat . ../htm
 dvips manual
+ps2pdf manual.ps manual.pdf
