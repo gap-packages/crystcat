@@ -1,34 +1,34 @@
 #!/bin/sh
 
 # remove old archive
-rm crystcat.zoo
+rm -f crystcat.zoo
 
 # goto <gaproot>/pkg
 cd ../..
 
 # first the binary files
-echo "\!BINARY\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.dvi
-echo "\!BINARY\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.pdf
+echo "!BINARY!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.dvi
+echo "!BINARY!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.pdf
 
 # then the text files
-echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.tex
-echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.bbl
-echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.six
-echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.lab
-echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.mst
-echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.ps
-echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/crystcat.tex
-echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/make_doc
-echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/init.g
-echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/read.g
-echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/README
-echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/Changelog
-echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/grp/crystcat.grp
+echo "!TEXT!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.tex
+echo "!TEXT!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.bbl
+echo "!TEXT!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.six
+echo "!TEXT!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.lab
+echo "!TEXT!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.mst
+echo "!TEXT!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.ps
+echo "!TEXT!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/crystcat.tex
+echo "!TEXT!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/make_doc
+echo "!TEXT!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/init.g
+echo "!TEXT!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/read.g
+echo "!TEXT!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/README
+echo "!TEXT!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/Changelog
+echo "!TEXT!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/grp/crystcat.grp
 for file in crystcat/lib/*.g[di] ; do
-  echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo $file
+  echo "!TEXT!\n/END" | zoo ach crystcat/etc/crystcat.zoo $file
 done
 for file in crystcat/htm/*.htm ; do
-  echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo $file
+  echo "!TEXT!\n/END" | zoo ach crystcat/etc/crystcat.zoo $file
 done
 
 # check result
