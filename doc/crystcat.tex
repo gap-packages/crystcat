@@ -7,10 +7,10 @@
 \index{crystallographic groups}
 \index{crystcat}
 
-This package provides a catalog of crystallographic groups of
-dimensions 2, 3, and 4 which covers most of the data contained 
+The package {\CrystCat} provides a catalog of crystallographic groups
+of dimensions 2, 3, and 4 which covers most of the data contained 
 in the book ``Crystallographic groups of four-dimensional space''
-\cite{BBNWZ78}.  It has been brought into {\GAP} format by Volkmar
+\cite{BBNWZ78}. It has been brought into {\GAP} format by Volkmar
 Felsch.
 
 The {\GAP} 4 version of the catalog requires the package {\Cryst},
@@ -19,6 +19,32 @@ extracted from the catalog now have the rich set of methods provided
 by {\Cryst} at their disposal, and are no longer dumb lists of generators.
 Moreover, space groups are now fully supported in both the representation
 acting from the left and the representation acting from the right.
+
+In 2001, Bernd Souvignier has discovered an error in the above mentioned
+book: On page 118, in the tabulation of enantiomorphic space-group types,
+it is wrongly claimed that the (affine) four-dimensional space-group
+type 08/01/01/002 splits into an enantiomorphic pair of (proper)
+space-group types. This is indicated by an asterisk preceding the
+space-group number. This asterisk has to be removed. As a
+consequence, the number of four-dimensional space-group types
+splitting into enantiomorphic pairs (given on page 11 and page 52
+of the book) reduces from 112 to 111. An erratum has been submitted
+to {\it Acta Cryst.}.
+
+The only implication of this correction for the package {\CrystCat}
+is that the output of the function
+\begintt
+DisplaySpaceGroupType( 4, 8, 1, 1, 2 );
+\endtt
+had to be changed from
+\begintt
+#I    *Space-group type (4,8,1,1,2); orbit size 2; fp-free
+\endtt
+to
+\begintt
+#I     Space-group type (4,8,1,1,2); orbit size 2; fp-free
+\endtt
+This has been done in the release {\GAP} 4.3.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{How to access the data of the book}
