@@ -1,7 +1,7 @@
 #!/bin/sh
 
-PKGZOO=crystcat-1.1.zoo
-DOCZOO=crystcat-doc-1.1.zoo
+PKGZOO=crystcat-1.1.1.zoo
+DOCZOO=crystcat-doc-1.1.1.zoo
 
 # remove old archives
 rm -f $PKGZOO
@@ -25,6 +25,7 @@ echo "!TEXT!" | zoo ach crystcat/etc/$PKGZOO crystcat/doc/manual.mst
 echo "!TEXT!" | zoo ach crystcat/etc/$PKGZOO crystcat/doc/manual.ps
 echo "!TEXT!" | zoo ach crystcat/etc/$PKGZOO crystcat/doc/crystcat.tex
 echo "!TEXT!" | zoo ach crystcat/etc/$PKGZOO crystcat/doc/make_doc
+echo "!TEXT!" | zoo ach crystcat/etc/$PKGZOO crystcat/PackageInfo.g
 echo "!TEXT!" | zoo ach crystcat/etc/$PKGZOO crystcat/init.g
 echo "!TEXT!" | zoo ach crystcat/etc/$PKGZOO crystcat/read.g
 echo "!TEXT!" | zoo ach crystcat/etc/$PKGZOO crystcat/README
