@@ -415,11 +415,12 @@ The presentation of that group is the same as the corresponding
 presentation given in Table 1 of \cite{BBNWZ78} except for the fact
 that its generators are listed in reverse order.  The reason for this
 change is that, whenever the group in question is solvable, the
-resulting generators form an AG system (as defined in {\GAP}) if they
-are numbered ``from the top to the bottom'', and the presentation is a
-polycyclic power commutator presentation.  The `PcGroupQClass'
-function described next will make use of this fact in order to
-construct an ag group isomorphic to <F>.
+resulting generators form a pcgs (as defined in section "ref:Polycyclic
+Groups" in the reference manual of {\GAP}) if they are numbered 
+``from the top to the bottom'', and the presentation is a 
+power-commutator presentation.  The `PcGroupQClass' function described 
+next will make use of this fact in order to construct a pc group 
+isomorphic to <F>.
 
 Note that, for any $\Z$-class  in the  specified $\Q$-class,  the  matrix
 group  returned by the `MatGroupZClass'  function (see below) not only is
@@ -448,16 +449,16 @@ gap> CrystCatRecord( F ).parameters;
 \>PcGroupQClass( <dim>, <IT-number> )
 \>PcGroupQClass( <Hermann-Mauguin-symbol> )
 
-returns an pc group $P$, say, isomorphic to the groups in the
+returns a pc group $P$, say, isomorphic to the groups in the
 specified $\Q$-class, if these groups are solvable, or the value
 `fail' (together with an appropriate warning), otherwise.
 
 $P$ is constructed by first establishing a finitely presented group
 (as it would be returned by the `FpGroupQClass' function described
 above) and then constructing from it an isomorphic pc group.  If the
-underlying AG system is not yet a PAG system (see sections "More about
-Ag Words" and "More about Ag Groups"), it will be refined
-appropriately (and a warning will be displayed).
+underlying pcgs is not a prime orders pcgs (see section "ref:Polycyclic
+Groups"), then it will be refined appropriately (and a warning will 
+be displayed).
 
 Besides of the usual components, <P> will have an attribute
 `CrystCatRecord', which is a record with component
@@ -493,9 +494,9 @@ corresponding table presented in \cite{BBNWZ78}.
 
 `CharTableQClass' proceeds as follows.  If the groups in the given
 $\Q$-class are solvable, then it first calls the `PcGroupQClass' and
-`RefinedPcGroup' functions to get an isomorphic ag group with a PAG
-system, and then it calls the `CharacterTable' function to compute the
-character table of that ag group.  In the case of the five
+`RefinedPcGroup' functions to get a suitable isomorphic pc group, and 
+then it calls the `CharacterTable' function to compute the
+character table of that pc group.  In the case of the five
 $\Q$-classes of dimension 4 whose groups are not solvable, it first
 calls the `FpGroupQClass' function to get an isomorphic finitely
 presented group, then it constructs a specially chosen faithful
