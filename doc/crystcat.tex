@@ -1,149 +1,156 @@
-\def\itm{\llap{$\bullet$ }}
+\def\x{\times}
 \hyphenation{Cryst-Cat-Record}
 
-\Chapter{The Crystallographic Groups Catalogue}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Chapter{The Crystallographic Groups Catalog}
 
 \index{crystallographic groups}
 
-{\GAP} provides a library of  crystallographic groups of dimensions 2, 3,
-and 4  which covers many of the  data that have been  listed  in the book
-``Crystallographic groups of four-dimensional space'' \cite{BBNWZ78}.
-It has been brought into {\GAP} format by Volkmar Felsch.
+This package provides a catalog of crystallographic groups of
+dimensions 2, 3, and 4 which covers most of the data contained 
+in the book ``Crystallographic groups of four-dimensional space''
+\cite{BBNWZ78}.  It has been brought into {\GAP} format by Volkmar
+Felsch.
 
+The {\GAP} 4 version of the catalog requires the share package CrystGap,
+which is loaded automatically. The benefit of this is that space groups 
+extracted from the catalog now have the rich set of methods provided
+by CrystGap at their disposal, ans are no longer dumb lists of generators.
+Moreover, space groups are now fully supported in both the representation
+acting from the left and the representation acting from the right.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{How to access the data of the book}
 
-Among others,  the library  offers functions  which provide access to the
+Among others, the catalog offers functions which provide access to the
 data listed in the Tables 1, 5, and 6 of \cite{BBNWZ78}:
 
-\beginitems 
-& \itm The information on the crystal families listed in Table 1 can
-       be reproduced using the `DisplayCrystalFamily' function.
-       
-& \itm Similarly, the `DisplayCrystalSystem' function can be
-       used to reproduce the information on the crystal systems
-       provided in Table 1.
-       
-& \itm The information given in the $\Q$-class headlines of
-       Table 1 can be displayed by the `DisplayQClass' function,
-       whereas the `FpGroupQClass' function can be used to reproduce
-       the presentations that are listed in Table 1 for the $\Q$-class
-       representatives.
-       
-& \itm The information given in the $\Z$-class headlines of Table 1
-       will be covered by the results of the `DisplayZClass' function,
-       and the matrix generators of the $\Z$-class representatives can
-       be constructed by calling the `MatGroupZClass' function.
-       
-& \itm The `DisplaySpaceGroupType' and the
-       `DisplaySpaceGroupGenerators' functions can be used to
-       reproduce all of the information on the space-group types that
-       is provided in Table 1.
-       
-& \itm The normalizers listed in Table 5 can be reproduced by
-       calling the `NormalizerZClass' function.
-       
-& \itm Finally, the `CharTableQClass' function will compute the
-       character tables listed in Table 6, whereas the isomorphism
-       types given in Table 6 may be obtained by calling the
-       `DisplayQClass' function.  
-\enditems
+\beginlist 
+\item{$\bullet$} 
+    The information on the crystal families listed in Table 1 can
+    be reproduced using the `DisplayCrystalFamily' function.
+\item{$\bullet$} 
+    Similarly, the `DisplayCrystalSystem' function can be
+    used to reproduce the information on the crystal systems
+    provided in Table 1.
+\item{$\bullet$} 
+    The information given in the $\Q$-class headlines of
+    Table 1 can be displayed by the `DisplayQClass' function,
+    whereas the `FpGroupQClass' function can be used to reproduce
+    the presentations that are listed in Table 1 for the $\Q$-class
+    representatives.
+\item{$\bullet$} 
+    The information given in the $\Z$-class headlines of Table 1
+    will be covered by the results of the `DisplayZClass' function,
+    and the matrix generators of the $\Z$-class representatives can
+    be constructed by calling the `MatGroupZClass' function.
+\item{$\bullet$} 
+    The `DisplaySpaceGroupType' and the
+    `DisplaySpaceGroupGenerators' functions can be used to
+    reproduce all of the information on the space-group types that
+    is provided in Table 1.
+\item{$\bullet$} 
+    The normalizers listed in Table 5 can be reproduced by
+    calling the `NormalizerZClass' function.
+\item{$\bullet$} 
+    Finally, the `CharTableQClass' function will compute the
+    character tables listed in Table 6, whereas the isomorphism
+    types given in Table 6 may be obtained by calling the
+    `DisplayQClass' function.  
+\endlist
 
-The display functions mentioned in the above list print their output with
-different  indentation.  So, calling them in  a suitably nested loop, you
-may produce a  listing  in which  the  information about  the objects  of
-different type will be properly  indented as has been  done in Table 1 of
-\cite{BBNWZ78}.
+The display functions mentioned in the above list print their output
+with different indentation.  So, calling them in a suitably nested
+loop, you may produce a listing in which the information about the
+objects of different type will be properly indented as has been done
+in Table 1 of \cite{BBNWZ78}.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Representation of space groups}
 
-Probably the most important function in the library is the
+Probably the most important function in the catalog is the
 `SpaceGroupBBNWZ' function which provides representatives of the
 affine classes of space groups.  A space group of dimension $n$ is
 represented by an $(n+1)$-dimensional rational matrix group as
 follows.
 
-If $S$ is an $n$-dimensional space group, then each element $\alpha
-\in S$ is an affine mapping $\alpha: V \rightarrow V$ of an
-$n$-dimensional $\R$-vector space $V$ onto itself.  Hence $\alpha$ can
-be written as the product of an appropriate invertible linear mapping
-$\varphi: V \rightarrow V$ and a translation by some translation
-vector $t \in V$ such that, if we write mappings from the left, we
-have $\alpha(v) = \varphi(v) + t$ for all $v \in V$.
+If $S$ is an $n$-dimensional space group, then each element $s$
+in $S$ is an affine mapping $s: V \to V$ of an $n$-dimensional 
+$\R$-vector space $V$ onto itself.  Hence $s$ can be written as 
+the product of an appropriate invertible linear mapping
+$g: V \to V$ and a translation by some translation
+vector $t \in V$ such that, if we write mappings from the left, 
+we have $s(v) = g(v) + t$ for all $v \in V$.
 
-If we fix a  basis of $V$  and then replace each $v  \in V$ by the column
-vector of  its coefficients with respect to  that basis (and hence $V$ by
-the isomorphic column  vector space $\R^{n  \times 1}$),  we can describe
-the linear mapping   $\varphi$ involved in  $\alpha$  by an $n \times  n$
-matrix $M_\varphi \in  GL_n(\R)$  which acts  by multiplication from  the
-left on the column vectors  in $\R^{n \times 1}$.   Hence, if we identify
-$V$ with $\R^{n \times  1}$, we have $\alpha(v)  = M_\varphi \cdot v + t$
-for all $v \in \R^{n \times 1}$.
+If we fix a basis of $V$ and then replace each $v \in V$ by the column
+vector of its coefficients with respect to that basis (and hence $V$
+by the isomorphic column vector space $\R^{n \x 1}$), we can describe
+the linear mapping $g$ involved in $s$ by an $n \x n$ matrix
+$M_g \in GL_n(\R)$ which acts by multiplication from the left on
+the column vectors in $\R^{n \x 1}$.  Hence, if we identify $V$ with
+$\R^{n \x 1}$, we have $s(v) = M_g v + t$ for all 
+$v \in \R^{n \x 1}$.
 
-Moreover,  if we extend each  column vector $v  \in \R^{n \times 1}$ to a
-column $\left[\matrix{v \cr 1}\right]$ of length $n+1$ by adding an entry 1 
-in the  last  position and  if  we  define an   $(n+1) \times (n+1)$  
-matrix $M_\alpha = \left[\matrix{M_\varphi & t \cr 0 & 1 } \right]$, 
-we have $\left[\matrix{\alpha(v) \cr 1} \right] = M_\alpha \cdot  
-\left[ \matrix{v \cr 1 } \right]$
-for all $v  \in \R^{n \times 1}$.  This  means that we can  represent the
-space  group $S$ by the isomorphic group $M(S)  = \{ M_\alpha \mid \alpha
-\in S \}$.    The submatrices $M_\varphi$   occurring in the  elements of
-$M(S)$ form  an $n \times n$ matrix  group $P(S)$, the ``point group''
-of $M(S)$.  In  fact, we can choose the  basis of $\R^{n \times  1}$ such
-that $M_{\varphi}  \in GL_n(\Z)$ and  $t \in   \Q^{n \times 1}$  for  all
-$M_\alpha \in M(S)$.  In particular, the space group representatives that
-are normally used by the crystallographers are of this form, and the book
-\cite{BBNWZ78} uses the same convention.
+Moreover, if we extend each column vector $v \in \R^{n \x 1}$ to a
+column $[ [ v ], [ 1 ] ]$ of length $n+1$ by adding an entry 1 
+in the last position and if we define an $(n+1) \x (n+1)$ matrix 
+$M_s = [ [ M_g, t ], [ 0, 1 ] ]$, we have $[ [ s(v) ], [ 1 ] ] = 
+M_s [ [ v ], [ 1 ] ]$ for all $v \in \R^{n \x 1}$. This means that 
+we can represent the space group $S$ by the isomorphic group 
+$M(S) = \{ M_s | s \in S \}$.  The submatrices $M_g$ occurring in 
+the elements of $M(S)$ form an $n \x n$ matrix group $P(S)$, the 
+``point group'' of $M(S)$.  In fact, we can choose the basis of 
+$\R^{n \x 1}$ such that $M_g \in GL_n(\Z)$ and  $t \in \Q^{n \x 1}$ 
+for all $M_s \in M(S)$.  In particular, the space group 
+representatives that are normally used by the crystallographers
+are of this form, and the book \cite{BBNWZ78} uses the same convention.
 
-The representation described above is the one usually used by 
-crystallographers. There is, however, an alternative to the 
-representation of the space group elements by matrices of the form 
-$\left[\matrix{M_\varphi & t \cr 0 & 1 } \right]$ as described above.  
-Instead of considering the coefficient vectors as columns we may consider 
-them as rows.  Then we can associate to each affine mapping $\alpha \in S$ 
-an $(n+1) \times (n+1)$ matrix $\overline{M}_\alpha =
-\left[\matrix{\overline{M}_{\overline{\varphi}} & 0 \cr \overline{t} &
-    1} \right]$ with $\overline{M}_{\overline{\varphi}} \in GL_n(\R)$
-and $\overline{t} \in \R^{1 \times n}$ such that
-$[\alpha(\overline{v}),1] = [\overline{v},1] \cdot
-\overline{M}_\alpha$ for all $\overline{v} \in \R^{1 \times n}$, and
-we may represent $S$ by the matrix group $\overline{M}(S) = \{
-\overline{M}_\alpha \mid \alpha \in S \}$.  Again, we can choose the
-basis of $\R^{1 \times n}$ such that
-$\overline{M}_{\overline{\varphi}} \in GL_n(\Z)$ and $\overline{t} \in
-\Q^{1 \times n}$ for all $\overline{M}_\alpha \in \overline{M}(S)$.
+The representation described above is the one usually used by
+crystallographers. There is, however, an alternative to the
+representation of the space group elements by matrices of the form
+$[ [ M_g, t ], [ 0, 1 ] ]$ as described above. Instead of 
+considering the coefficient vectors as columns we may consider 
+them as rows.  Then we can associate to each affine mapping
+$s \in S$ an $(n+1) \x (n+1)$ matrix $M\pif_s =
+[ [ M\pif_{g\pif}, 0 ], [ t\pif, 1 ] ]$ with 
+$M\pif_{g\pif} \in GL_n(\R)$ and $t\pif \in \R^{1 \x n}$ such 
+that $[s(v\pif),1] = [v\pif,1] M\pif_s$ for all 
+$v\pif \in \R^{1 \x n}$, and we may represent $S$ by the matrix 
+group $M\pif(S) = \{ M\pif_s | s \in S \}$.  Again, we can choose 
+the basis of $\R^{1 \x n}$ such that $M\pif_{g\pif} \in GL_n(\Z)$ 
+and $t\pif \in \Q^{1 \x n}$ for all $M\pif_s \in M\pif(S)$.
 
-From the mathematical point of view, both approaches are
-equivalent. In particular, $M(S)$ and $\overline{M}(S)$ are
-isomorphic, for instance via the isomorphism $\tau$ mapping $M_\alpha
-\in M(S)$ to $(M_\alpha^{\rm tr})^{-1}$.  Unfortunately, however,
-neither of the two is a good choice for our {\GAP} library.
+From the mathematical point of view, both approaches are equivalent. 
+In particular, $M(S)$ and $M\pif(S)$ are isomorphic, for instance 
+via the isomorphism $\tau$ mapping $M_s \in M(S)$ to 
+$(M_s^{tr})^{-1}$.  Unfortunately, however, neither of the two 
+is a good choice for our {\GAP} catalog.
 
 The first convention, using matrices which act on column vectors from
 the left, is not consistent with the fact that actions in {\GAP} are
 usually from the right.
 
-On the  other hand, if we choose  the second  convention,  we run  into a
-problem  with  the  names   of  the space     groups   as introduced   in
-\cite{BBNWZ78}. Any  such   name  does not  just  describe  the  abstract
+On the other hand, if we choose the second convention, we run into a
+problem with the names of the space groups as introduced in
+\cite{BBNWZ78}. Any such name does not just describe the abstract
 isomorphism type of the respective space group $S$, but reflects
 properties of the matrix group $M(S)$.  In particular, it contains as
 a leading part the name of the $\Z$-class of the associated point
 group $P(S)$.  Since the classification of space groups by affine
 equivalence is tantamount to their classification by abstract
-isomorphism, $\overline{M}(S)$ lies in the same affine class as $M(S)$
-and hence should get the same name as $M(S)$.  But the point group
-$P(S)$ that occurs in that name is not always $\Z$-equivalent to the
-point group $\overline{P}(S)$ of $\overline{M}(S)$.  For example, the
-isomorphism $\tau: M(S) \rightarrow \overline{M}(S)$ defined above
-maps the $\Z$-class representative with the parameters $[3,7,3,2]$ (in
-the notation described below) to the $\Z$-class representative with
-the parameters $[3,7,3,3]$.  In other words:\ The space group names
-introduced for the groups $M(S)$ in \cite{BBNWZ78} lead to confusing
-inconsistencies if assigned to the groups $\overline{M}(S)$.
+isomorphism, $M\pif(S)$ lies in the same affine class as $M(S)$ and
+hence should get the same name as $M(S)$.  But the point group $P(S)$
+that occurs in that name is not always $\Z$-equivalent to the point
+group $P\pif(S)$ of $M\pif(S)$.  For example, the isomorphism $\tau:
+M(S) \to M\pif(S)$ defined above maps the $\Z$-class representative
+with the parameters $[3,7,3,2]$ (in the notation described below) to
+the $\Z$-class representative with the parameters $[3,7,3,3]$.  In
+other words:\ The space group names introduced for the groups $M(S)$
+in \cite{BBNWZ78} lead to confusing inconsistencies if assigned to the
+groups $M\pif(S)$.
 
 In order to avoid this confusion we decided that the first convention
-is the lesser evil, and so the {\GAP} library follows the book. In
+is the lesser evil, and so the {\GAP} catalog follows the book. In
 particular, all functions listed in section "How to access the data 
 of the book" use the convention of the book. The space groups, however,
 can be constructed in both representations, so that the user can choose
@@ -153,13 +160,14 @@ the ``crystallographic'' representation acting on the left,
 whereas `SpaceGroupOnRightBBNWZ' constructs a space group in the
 representation acting on the right, as preferred by GAP. In order to 
 avoid long function names (and in order to avoid mixing groups in
-different representations), one can set ones own default with the 
-function `SetCrystGroupDefaultAction' (see "SetCrystGroupDefaultAction"), 
+different representations), one can set one{\pif}s own default 
+with the function `SetCrystGroupDefaultAction' 
+(see "ref:SetCrystGroupDefaultAction"), 
 which takes as argument either `LeftAction' of `RightAction'. 
 `SpaceGroupBBNWZ' then constructs a space group in this default
 representation. Initially, the default is `RightAction'.
 
-The space groups constructed from the library are matrix groups, which
+The space groups constructed from the catalog are matrix groups, which
 in addition have the property `IsAffineCrystGroupOnLeft' (or
 `IsAffineCrystGroupOnRight', respectively). The share package CrystGap
 provides methods to compute with such groups. CrystGap is necessary
@@ -167,7 +175,7 @@ for any serious computation with space groups, because the support of
 plain {\GAP} for infinite matrix groups (such as space groups) is very
 limited.
 
-Before we describe all available library functions in detail, we have
+Before we describe all available catalog functions in detail, we have
 to add two remarks.
 
 *Remark 1:*
@@ -223,13 +231,14 @@ the now proposed definition of crystal system is used.
 
 *Remark 2:*
 The second remark just concerns a  different terminology in the tables of
-\cite{BBNWZ78} and in the current library. In group theory, the number of
+\cite{BBNWZ78} and in the current catalog. In group theory, the number of
 elements of a  finite group  usually is  called  the ``order'' of  the
 group.   This notation has  been  used throughout   in  the book.   Here,
 however,  we  will follow the    {\GAP}   conventions and use  the   term
 ``size'' instead.
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Crystal Families}
 
 \>NrCrystalFamilies( <dim> )
@@ -251,19 +260,19 @@ displays for the specified crystal family essentially the same
 information as is provided for that family in Table 1 of
 \cite{BBNWZ78}, namely
 
-\beginitems
-& \itm the family name,
+\beginlist
+\item{$\bullet$} the family name,
 
-& \itm the number of parameters,
+\item{$\bullet$} the number of parameters,
 
-& \itm the common rational decomposition pattern,
+\item{$\bullet$} the common rational decomposition pattern,
 
-& \itm the common real decomposition pattern,
+\item{$\bullet$} the common real decomposition pattern,
 
-& \itm the number of crystal systems in the family, and
+\item{$\bullet$} the number of crystal systems in the family, and
 
-& \itm the number of Bravais flocks in the family.
-\enditems
+\item{$\bullet$} the number of Bravais flocks in the family.
+\endlist
 
 For details see \cite{BBNWZ78}.
 
@@ -281,6 +290,7 @@ gap> DisplayCrystalFamily( 4, 21 );
 #I  R-irreducible; 2 crystal systems; 2 Bravais flocks
 \endexample
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Crystal Systems}
 
 \>NrCrystalSystems( <dim> )
@@ -308,13 +318,14 @@ displays for the specified crystal system essentially the same
 information as is provided for that system in Table 1 of
 \cite{BBNWZ78}, namely
 
-\beginitems
-& \itm the number of $\Q$-classes in the crystal system and
-
-& \itm the identification number, i.~e., the tripel (<dim>, <system>,
-       <q-class>) described below, of the $\Q$-class that is the 
-       holohedry of the crystal system.  
-\enditems
+\beginlist
+\item{$\bullet$} 
+    the number of $\Q$-classes in the crystal system and
+\item{$\bullet$} 
+    the identification number, i.~e., the tripel (<dim>, <system>,
+    <q-class>) described below, of the $\Q$-class that is the 
+    holohedry of the crystal system.  
+\endlist
 
 For details see \cite{BBNWZ78}.
 
@@ -326,6 +337,7 @@ gap> for sys in [ 1 .. 4 ] do  DisplayCrystalSystem( 2, sys );  od;
 #I  Crystal system 4: 4 Q-classes; holohedry (2,4,4)
 \endexample
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Q-Classes}
 
 \>NrQClassesCrystalSystem( <dim>, <system> )
@@ -342,13 +354,13 @@ and <q-class> is the number of the $\Q$-class within the crystal
 system.  However, in case of dimensions 2 or 3, a $\Q$-class may also
 be characterized by a pair (<dim>, <IT-number>) where <IT-number> is
 the number in the International Tables for Crystallography
-\cite{Hah83} of any space-group type lying in (a $\Z$-class of) that
+\cite{IT95} of any space-group type lying in (a $\Z$-class of) that
 $\Q$-class, or just by the Hermann-Mauguin symbol of any space-group
 type lying in (a $\Z$-class of) that $\Q$-class.
 
 The Hermann-Mauguin symbols \index{Hermann-Mauguin symbol} which we
 use in {\GAP} are the short Hermann-Mauguin symbols defined in the
-1983 edition of the International Tables \cite{Hah83}, but any
+1983 edition of the International Tables \cite{IT95}, but any
 occurring indices are expressed by ordinary integers, and bars are
 replaced by minus signs.  For example, the Hermann-Mauguin symbol
 <P>$\overline{4}2_1m$ will be represented by the string `\"P-421m\"'.
@@ -360,19 +372,14 @@ replaced by minus signs.  For example, the Hermann-Mauguin symbol
 displays for the specified $\Q$-class essentially the same information
 as is provided for that $\Q$-class in Table 1 of \cite{BBNWZ78}
 (except for the defining relations given there), namely
-\beginitems
-& \itm the size of the groups in the $\Q$-class,
-
-& \itm the isomorphism type of the groups in the $\Q$-class,
-
-& \itm the Hurley pattern,
-
-& \itm the rational constituents,
-
-& \itm the number of $\Z$-classes in the $\Q$-class, and
-
-& \itm the number of space-group types in the $\Q$-class.
-\enditems
+\beginlist
+\item{$\bullet$} the size of the groups in the $\Q$-class,
+\item{$\bullet$} the isomorphism type of the groups in the $\Q$-class,
+\item{$\bullet$} the Hurley pattern,
+\item{$\bullet$} the rational constituents,
+\item{$\bullet$} the number of $\Z$-classes in the $\Q$-class, and
+\item{$\bullet$} the number of space-group types in the $\Q$-class.
+\endlist
 For details see \cite{BBNWZ78}.
 
 \beginexample
@@ -526,6 +533,7 @@ A = E(4)
   = ER(-1) = i
 \endexample
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Z-Classes}
 
 \>NrZClassesQClass( <dim>, <system>, <q-class> )
@@ -545,7 +553,7 @@ the crystal system, and <z-class> is the number of the $\Z$-class
 within the $\Q$-class.  However, in case of dimensions 2 or 3, a
 $\Z$-class may also be characterized by a pair (<dim>, <IT-number>)
 where <IT-number> is the number in the International Tables
-\cite{Hah83} of any space-group type lying in that $\Z$-class, or just
+\cite{IT95} of any space-group type lying in that $\Z$-class, or just
 by the Hermann-Mauguin symbol of any space-group type lying in that
 $\Z$-class.
 
@@ -557,18 +565,14 @@ displays for the specified $\Z$-class essentially the same information
 as is provided for that $\Z$-class in Table 1 of \cite{BBNWZ78}
 (except for the generating matrices of a class representative group
 given there), namely
-\beginitems
-& \itm for  dimensions 2 and 3, the  Hermann-Mauguin symbol of a
-       representative space-group type  which belongs  to that $\Z$-class,
-
-& \itm the Bravais type,
-
-& \itm some decomposability information,
-
-& \itm the number of space-group types belonging to the $\Z$-class,
-
-& \itm the size of the associated cohomology group.
-\enditems
+\beginlist
+\item{$\bullet$} for  dimensions 2 and 3, the  Hermann-Mauguin symbol of a
+    representative space-group type  which belongs  to that $\Z$-class,
+\item{$\bullet$} the Bravais type,
+\item{$\bullet$} some decomposability information,
+\item{$\bullet$} the number of space-group types belonging to the $\Z$-class,
+\item{$\bullet$} the size of the associated cohomology group.
+\endlist
 For details see \cite{BBNWZ78}.
 
 \beginexample
@@ -590,7 +594,7 @@ gap> DisplayZClass( 4, 21, 3, 1 );
 \>MatGroupZClass( <dim>, <IT-number> )
 \>MatGroupZClass( <Hermann-Mauguin-symbol> )
 
-returns a $dim \times dim$ matrix group <M>, say, which is a
+returns a $dim \x dim$ matrix group <M>, say, which is a
 representative of the specified $\Z$-class.  Its generators satisfy
 the defining relators of the finitely presented group which may be
 computed by calling the `FpGroupQClass' function (see above) for the
@@ -637,7 +641,7 @@ gap> CrystCatRecord( M ).parameters;
 \>NormalizerZClass( <Hermann-Mauguin-symbol> )
 
 returns the normalizer <N>, say, in $GL(dim,\Z)$ of the representative
-$dim \times dim$ matrix group which is constructed by the
+$dim \x dim$ matrix group which is constructed by the
 `MatGroupZClass' function (see above).
 
 If the size of <N> is finite, then <N> again lies in some $\Z$-class.
@@ -695,6 +699,7 @@ gap> HasCrystCatRecord( M );
 false
 \endexample
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Dade groups}
 
 Some of the $\Z$-classes  of   dimension <d>, say, are ``maximal''  in
@@ -774,6 +779,7 @@ gap> CrystCatRecord( R ).conjugator;
 [ [ 1, 0 ], [ -1, 1 ] ]
 \endexample
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Space groups and space group types}
 
 \>NrSpaceGroupTypesZClass( <dim>, <system>, <q-class>, <z-class> )
@@ -810,12 +816,11 @@ symmorphic space group (split extension).
 displays for the specified space-group type some of the information
 which is provided for that space-group type in Table 1 of
 \cite{BBNWZ78}, namely
-\beginitems
-& \itm the orbit size associated with that space-group type and,
-
-& \itm for dimensions  2 and 3,  the <IT-number>  and  the Hermann-Mauguin
-       symbol.
-\enditems
+\beginlist
+\item{$\bullet$} the orbit size associated with that space-group type and,
+\item{$\bullet$} for dimensions  2 and 3,  the <IT-number>  and  the 
+    Hermann-Mauguin symbol.
+\endlist
 For details see \cite{BBNWZ78}.
 
 \beginexample
@@ -840,16 +845,16 @@ that matrix group. The generators are given in the representation
 acting from the left on column vectors.
 
 In more details: Let <n> = <dim> be the given dimension, and let $M_1,
-\ldots, M_r$ be the generators of the representative $n \times n$
+\ldots, M_r$ be the generators of the representative $n \x n$
 matrix group of the given $\Z$-class (this is the group which you will
 get if you call the `MatGroupZClass' function (see above) for that
 $\Z$-class).  Then, for the given space-group type, the 
 `SpaceGroupOnLeftBBNWZ' function described below will construct as 
-representative of that space-group type an $(n+1) \times (n+1)$ matrix 
+representative of that space-group type an $(n+1) \x (n+1)$ matrix 
 group which is generated by the <n> translations which are induced 
 by the (standard) basis vectors of the <n>-dimensional Euclidian space, 
 and <r> additional matrices $S_1, \ldots, S_r$ of the form $S_i =
-\left[\matrix{ M_i & t_i \cr 0 & 1 } \right]$, where the $n \times n$
+\left[\matrix{ M_i & t_i \cr 0 & 1 } \right]$, where the $n \x n$
 submatrices $M_i$ are as defined above, and the $t_i$ are <n>-columns
 with rational entries.  The `DisplaySpaceGroupGenerators' function
 saves time by not constructing the group, but just displaying the $r$
@@ -977,7 +982,7 @@ with the same arguments, depending on the value of the variable
 
 returns a finitely presented group <G>, say, which is isomorphic to
 <S>, where <S> is expected to be a space group from the BBNWZ
-catalogue (acting from the left or from the right).  It is chosen such
+catalog (acting from the left or from the right).  It is chosen such
 that there is an isomorphism from <G> to <S> which maps each generator
 of <G> onto the corresponding generator of <S>.  This means, in
 particular, that the matrix generators of <S> satisfy the relators of
