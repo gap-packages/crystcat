@@ -665,7 +665,11 @@ InstallGlobalFunction( CR_MatGroupZClass, function ( param )
     q := CR.nullQClass[sys] + qcl;
     z := CR.nullZClass[q] + zcl;
 
-    gens := CR_GeneratorsZClass( dim, z );
+    if param{[2..4]} = [1,1,1] then
+        gens := [];
+    else
+        gens := CR_GeneratorsZClass( dim, z );
+    fi;
     G := Group( gens, Identity( CR.GLZ ) );
 
     # Save the Z-class parameters in the group record.
@@ -713,8 +717,7 @@ InstallGlobalFunction( CR_PcGroupQClass, function ( param, warning )
 
     if ord = 1 then
 
-        F := FreeGroup( 0 );
-        rels := [ ];
+        G := TrivialGroup( IsPcGroup );
 
     else
 
@@ -728,17 +731,18 @@ InstallGlobalFunction( CR_PcGroupQClass, function ( param, warning )
         F := FreeGroup( ngens );
         rels := List( [ 1 .. nrels ], i -> MappedWord( crrels[i],
             crgens, GeneratorsOfGroup( F ) ) );
-    fi;
 
-    F := F / rels;
-    G := PcGroupFpGroup( F );
+        F := F / rels;
+        G := PcGroupFpGroup( F );
 
-    # Refine the pc series, if necessary.
-    G := RefinedPcGroup( G );
-    if warning and Length( GeneratorsOfGroup( G ) ) <>
-        Length( GeneratorsOfGroup( F ) ) then
-         Print( "#I  Warning: the presentation has been extended to get",
-           " a prime order pcgs\n" );
+        # Refine the pc series, if necessary.
+        G := RefinedPcGroup( G );
+        if warning and Length( GeneratorsOfGroup( G ) ) <>
+            Length( GeneratorsOfGroup( F ) ) then
+             Print( "#I  Warning: the presentation has been extended to get",
+               " a prime order pcgs\n" );
+        fi;
+
     fi;
 
     # Save the Q-class parameters in the group record.
@@ -1072,7 +1076,11 @@ InstallGlobalFunction( CR_SpaceGroup, function ( param )
     dim1 := dim + 1;
 
     # Get the non-translation generators.
-    gens := CR_GeneratorsSpaceGroup( param );
+    if param{[2..5]} = [1,1,1,1] then
+        gens := [];
+    else
+        gens := CR_GeneratorsSpaceGroup( param );
+    fi;
 
     # Add the translation generators.
     for i in [ 1 .. dim ] do
