@@ -7,6 +7,8 @@ SetPackageInfo( rec(
 
 PackageName := "CrystCat",
 
+Subtitle := "The crystallographic groups catalog",
+
 Version := "1.1.1",
 
 Date := "18/6/2003",
@@ -63,11 +65,12 @@ PackageWWWHome := "http://www.itap.physik.uni-stuttgart.de/~gaehler/gap/packages
 PackageDoc  := rec(
   BookName  := "CrystCat",
   Archive   := "http://www.itap.physik.uni-stuttgart.de/~gaehler/gap/CrystCat/crystcat-doc-1.1.1.zoo",
+  ArchiveURLSubset := ["doc", "htm"],
   HTMLStart := "htm/chapters.htm",
   PDFFile   := "doc/manual.pdf",
   SixFile   := "doc/manual.six",
   LongTitle := "The crystallographic groups catalog",
-  AutoLoad  := true
+  Autoload  := true
 ),
 
 Dependencies := rec(
