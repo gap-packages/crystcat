@@ -1,0 +1,35 @@
+#!/bin/tcsh
+
+# remove old archive
+rm crystcat.zoo
+
+# goto <gaproot>/pkg
+cd ../..
+
+# first the binary files
+echo "\!BINARY\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.dvi
+
+# then the text files
+echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.tex
+echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.bbl
+echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.six
+echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.mst
+echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/manual.ps
+echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/crystcat.tex
+#echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/preface.tex
+echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/doc/make_doc
+echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/init.g
+echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/read.g
+#echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/README
+echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo crystcat/grp/crystcat.grp
+foreach file (crystcat/lib/*.g[di])
+  echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo $file
+end
+foreach file (crystcat/htm/*.htm)
+  echo "\!TEXT\!\n/END" | zoo ach crystcat/etc/crystcat.zoo $file
+end
+
+# check result
+cd crystcat/etc
+zoo -list crystcat.zoo
+
