@@ -1,17 +1,17 @@
 #############################################################################
 ##  
-##  PkgInfo.g for CrystCat
+##  PackageInfo.g for CrystCat
 ##  
 
 SetPackageInfo( rec(
 
-PkgName := "CrystCat",
+PackageName := "CrystCat",
 
-Version := "1.1",
+Version := "1.1.1",
 
-Date := "05/10/2001",
+Date := "18/6/2003",
 
-ArchiveURL := "http://www.itap.physik.uni-stuttgart.de/~gaehler/gap/CrystCat/crystcat-1.1",
+ArchiveURL := "http://www.itap.physik.uni-stuttgart.de/~gaehler/gap/CrystCat/crystcat-1.1.1",
 
 ArchiveFormats := ".zoo",
 
@@ -47,7 +47,7 @@ CommunicatedBy := "Herbert Pahlings (Aachen)",
 AcceptDate := "02/2000",
 
 README_URL := "http://www.itap.physik.uni-stuttgart.de/~gaehler/gap/CrystCat/README.crystcat",
-PkgInfoURL := "http://www.itap.physik.uni-stuttgart.de/~gaehler/gap/CrystCat/PkgInfo.g",
+PackageInfoURL := "http://www.itap.physik.uni-stuttgart.de/~gaehler/gap/CrystCat/PackageInfo.g",
 
 AbstractHTML := 
 "This package provides a catalog of crystallographic groups of \
@@ -62,7 +62,7 @@ PackageWWWHome := "http://www.itap.physik.uni-stuttgart.de/~gaehler/gap/packages
 
 PackageDoc  := rec(
   BookName  := "CrystCat",
-  Archive   := "http://www.itap.physik.uni-stuttgart.de/~gaehler/gap/CrystCat/crystcat-doc-1.1.zoo",
+  Archive   := "http://www.itap.physik.uni-stuttgart.de/~gaehler/gap/CrystCat/crystcat-doc-1.1.1.zoo",
   HTMLStart := "htm/chapters.htm",
   PDFFile   := "doc/manual.pdf",
   SixFile   := "doc/manual.six",
