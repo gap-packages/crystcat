@@ -54,7 +54,7 @@ AbstractHTML :=
 dimensions 2, 3, and 4 which covers most of the data contained in \
 the book <em>Crystallographic groups of four-dimensional space</em> \
 by H. Brown, R. B&uuml;low, J. Neub&uuml;ser, H. Wondratschek, and \
-H. Zassenhaus (John Wiley, New York, 1978). Methods for the \ 
+H. Zassenhaus (John Wiley, New York, 1978). Methods for the \
 computation with these groups are provided by the package \
 <span class=\"pkgname\">Cryst</span>, which must be installed as well.",
 
@@ -77,7 +77,7 @@ Dependencies := rec(
   ExternalConditions := []
 ),
 
-AvailabilityTest := ReturnTrue;
+AvailabilityTest := ReturnTrue,
 
 Autoload := true,
 
