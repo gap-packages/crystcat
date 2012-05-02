@@ -19,5 +19,5 @@ tar cvf crystcat/etc/$PKGTAR crystcat/doc/manual.* crystcat/doc/*.tex \
 
 # compress the result
 cd crystcat/etc
-chmod a-r $PKGTAR
+chmod a+r $PKGTAR
 gzip $PKGTAR
