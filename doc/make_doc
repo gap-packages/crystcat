@@ -3,6 +3,6 @@ rm -f manual.aux manual.dvi manual.idx manual.ilg manual.ind manual.lab manual.l
 tex manual
 ../../../doc/manualindex manual
 tex manual
-../../../etc/convert.pl -c -i -n crystcat . ../htm
+../../../etc/convert.pl -c -i -u -n crystcat . ../htm
 dvips -o manual.ps manual
 ps2pdf manual.ps manual.pdf

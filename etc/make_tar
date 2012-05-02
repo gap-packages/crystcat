@@ -1,0 +1,23 @@
+#!/bin/sh
+
+PKGTAR=crystcat-1.1.5.tar
+
+# remove old archive
+rm -f $PKGTAR*
+
+# update documentaion
+(cd ../doc; ./make_doc; chmod a+r *; cd ../htm; chmod a+r *)
+
+# goto <gaproot>/pkg
+cd ../..
+
+# make the package archive
+tar cvf crystcat/etc/$PKGTAR crystcat/doc/manual.* crystcat/doc/*.tex \
+  crystcat/doc/make_doc crystcat/*.g crystcat/README crystcat/Changelog \
+  crystcat/GPL crystcat/lib/*.g[di] crystcat/htm/*.htm \
+  crystcat/grp/crystcat.grp
+
+# compress the result
+cd crystcat/etc
+chmod a-r $PKGTAR
+gzip $PKGTAR

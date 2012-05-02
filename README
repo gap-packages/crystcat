@@ -12,24 +12,19 @@ by Cryst at their disposal, and are no longer dumb lists of generators.
 Moreover, space groups are now fully supported in both the representation
 acting from the left and the representation acting from the right.
 
-To install CrystCat, just unpack crystcat.zoo in the pkg subdirectory
-of your GAP installation (or in the pkg subdirectory of any other
-GAP root directory) with the following command:
+CrystCat is distributed together with GAP, and does not require any
+installation. It is loaded with the GAP command
 
-unzoo -x crystcat.zoo
-
-CrystCat is then loaded with the GAP command
-
-gap> RequirePackage( "crystcat" ); 
+gap> LoadPackage( "crystcat" ); 
 
 The catalog was brought into GAP format, and ported later to GAP 4 by 
 
-    Volkmar Felsch, Lehrstuhl D fuer Mathematik, RWTH Aachen,
+    Volkmar Felsch, Lehrstuhl D f\"ur Mathematik, RWTH Aachen,
     volkmar.felsch@math.rwth-aachen.de
 
 The integration with Cryst is by
 
-    Franz G\"ahler, Institut f\"ur Theoretische und Angewandte Physik,
-    Universit\"at Stuttgart, gaehler@itap.physik.uni-stuttgart.de
+    Franz G\"ahler, Fakult\"at f\"ur Mathematik,
+    Universit\"at Bielefeld, gaehler@math.uni-bielefeld.de
 
 Please sent bug reports to any of these email addresses.
