@@ -5,6 +5,6 @@
 #Y  Copyright (C)  1997,  Lehrstuhl D fuer Mathematik,  RWTH Aachen,  Germany
 ##
 
-ReadPkg( "crystcat", "grp/crystcat.grp" );
-ReadPkg( "crystcat", "lib/crystcat.gi" );
-ReadPkg( "crystcat", "lib/normalizer.gi" );
+ReadPackage( "crystcat", "grp/crystcat.grp" );
+ReadPackage( "crystcat", "lib/crystcat.gi" );
+ReadPackage( "crystcat", "lib/normalizer.gi" );

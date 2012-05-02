@@ -9,13 +9,15 @@ PackageName := "CrystCat",
 
 Subtitle := "The crystallographic groups catalog",
 
-Version := "1.1.1",
+Version := "1.1.5",
 
-Date := "18/6/2003",
+Date := "02/05/2012",
 
-ArchiveURL := "http://www.itap.physik.uni-stuttgart.de/~gaehler/gap/CrystCat/crystcat-1.1.1",
+ArchiveURL := "http://www.math.uni-bielefeld.de/~gaehler/gap45/CrystCat/crystcat-1.1.5",
 
-ArchiveFormats := ".zoo",
+ArchiveFormats := ".tar.gz",
+
+BinaryFiles := [ "doc/manual.pdf", "doc/manual.dvi" ],
 
 Persons := [
   rec(
@@ -34,11 +36,11 @@ Persons := [
     FirstNames := "Franz",
     IsAuthor := true,
     IsMaintainer := true,
-    Email := "gaehler@itap.physik.uni-stuttgart.de",
-    WWWHome := "http://www.itap.physik.uni-stuttgart.de/~gaehler/",
+    Email := "gaehler@math.uni-bielefeld.de",
+    WWWHome := "http://www.math.uni-bielefeld.de/~gaehler/",
     #PostalAddress := "",           
-    Place := "Stuttgart",
-    Institution := "ITAP, Universität Stuttgart"
+    Place := "Bielefeld",
+    Institution := "Mathematik, Universität Bielefeld"
   )
 ],
 
@@ -48,8 +50,8 @@ CommunicatedBy := "Herbert Pahlings (Aachen)",
 
 AcceptDate := "02/2000",
 
-README_URL := "http://www.itap.physik.uni-stuttgart.de/~gaehler/gap/CrystCat/README.crystcat",
-PackageInfoURL := "http://www.itap.physik.uni-stuttgart.de/~gaehler/gap/CrystCat/PackageInfo.g",
+README_URL := "http://www.math.uni-bielefeld.de/~gaehler/gap45/CrystCat/README.crystcat",
+PackageInfoURL := "http://www.math.uni-bielefeld.de/~gaehler/gap45/CrystCat/PackageInfo.g",
 
 AbstractHTML := 
 "This package provides a catalog of crystallographic groups of \
@@ -60,11 +62,11 @@ H. Zassenhaus (John Wiley, New York, 1978). Methods for the \
 computation with these groups are provided by the package \
 <span class=\"pkgname\">Cryst</span>, which must be installed as well.",
 
-PackageWWWHome := "http://www.itap.physik.uni-stuttgart.de/~gaehler/gap/packages.html",
+PackageWWWHome := 
+  "http://www.math.uni-bielefeld.de/~gaehler/gap45/packages.php",
 
 PackageDoc  := rec(
   BookName  := "CrystCat",
-  Archive   := "http://www.itap.physik.uni-stuttgart.de/~gaehler/gap/CrystCat/crystcat-doc-1.1.1.zoo",
   ArchiveURLSubset := ["doc", "htm"],
   HTMLStart := "htm/chapters.htm",
   PDFFile   := "doc/manual.pdf",
@@ -74,15 +76,13 @@ PackageDoc  := rec(
 ),
 
 Dependencies := rec(
-  GAP := ">=4.2",
-  NeededOtherPackages := [ [ "Cryst", ">=4.1" ] ],
+  GAP := ">=4.5",
+  NeededOtherPackages := [ [ "Cryst", ">=4.1.8" ] ],
   SuggestedOtherPackages := [],
   ExternalConditions := []
 ),
 
 AvailabilityTest := ReturnTrue,
-
-Autoload := true,
 
 #TestFile := "tst/testall.g",
 
