@@ -29,10 +29,10 @@ Persons := [
     WWWHome := "http://www.math.rwth-aachen.de/~Volkmar.Felsch/",
     #PostalAddress := "",           
     Place := "Aachen",
-    Institution := "Lehrstuhl D für Mathematik, RWTH Aachen"
+    Institution := "Lehrstuhl D fÃ¼r Mathematik, RWTH Aachen"
   ),
   rec(
-    LastName := "Gähler",
+    LastName := "GÃ¤hler",
     FirstNames := "Franz",
     IsAuthor := true,
     IsMaintainer := true,
@@ -40,7 +40,7 @@ Persons := [
     WWWHome := "http://www.math.uni-bielefeld.de/~gaehler/",
     #PostalAddress := "",           
     Place := "Bielefeld",
-    Institution := "Mathematik, Universität Bielefeld"
+    Institution := "Mathematik, UniversitÃ¤t Bielefeld"
   )
 ],
 
