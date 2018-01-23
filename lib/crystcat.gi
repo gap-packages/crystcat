@@ -2,8 +2,6 @@
 ##
 #A  crystcat.gi                 GAP group library              Volkmar Felsch
 ##
-#H  @(#)$Id$
-##
 #Y  Copyright (C)  1994,  Lehrstuhl D fuer Mathematik,  RWTH Aachen,  Germany
 ##
 ##  This file contains functions  that allow to access most of the data which
