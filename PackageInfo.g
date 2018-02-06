@@ -84,7 +84,7 @@ Dependencies := rec(
 
 AvailabilityTest := ReturnTrue,
 
-#TestFile := "tst/testall.g",
+TestFile := "tst/testall.g",
 
 Keywords := [ "crystallographic groups", "space groups" ]
 

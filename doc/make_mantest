@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo 'gap> START_TEST( "Crystcat: manual.tst" );'
+
+awk '/\\beginexample/ {printf "\n";getline; \
+   while (! /\\endexample/) { print; getline } }' crystcat.tex
+
+echo 'gap> STOP_TEST( "manual.tst", 10000 );'
