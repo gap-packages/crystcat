@@ -696,7 +696,7 @@ end );
 InstallGlobalFunction( CR_PcGroupQClass, function ( param, warning )
 
     local CR, cr, crgens, crrels, dim, F, G, i, ngens, nrels, num, ord, q,
-          qcl, rels, sys;
+          qcl, rels, sys, lev;
 
     # Get the arguments.
     dim := param[1];
@@ -731,7 +731,11 @@ InstallGlobalFunction( CR_PcGroupQClass, function ( param, warning )
             crgens, GeneratorsOfGroup( F ) ) );
 
         F := F / rels;
+        # suppress premature warning about better using RefinedPcGroup
+        lev := InfoLevel( InfoWarning );
+        SetInfoLevel( InfoWarning, 0 );
         G := PcGroupFpGroup( F );
+        SetInfoLevel( InfoWarning, lev );
 
         # Refine the pc series, if necessary.
         G := RefinedPcGroup( G );
