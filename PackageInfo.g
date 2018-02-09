@@ -13,7 +13,7 @@ Version := "1.1.8",
 
 Date := "09/02/2018",
 
-ArchiveURL := "http://www.math.uni-bielefeld.de/~gaehler/gap45/CrystCat/crystcat-1.1.8",
+ArchiveURL := "https://www.math.uni-bielefeld.de/~gaehler/gap45/CrystCat/crystcat-1.1.8",
 
 ArchiveFormats := ".tar.gz",
 
