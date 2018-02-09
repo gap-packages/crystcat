@@ -9,11 +9,11 @@ PackageName := "CrystCat",
 
 Subtitle := "The crystallographic groups catalog",
 
-Version := "1.1.7",
+Version := "1.1.8",
 
-Date := "8/02/2018",
+Date := "09/02/2018",
 
-ArchiveURL := "http://www.math.uni-bielefeld.de/~gaehler/gap45/CrystCat/crystcat-1.1.7",
+ArchiveURL := "http://www.math.uni-bielefeld.de/~gaehler/gap45/CrystCat/crystcat-1.1.8",
 
 ArchiveFormats := ".tar.gz",
 
