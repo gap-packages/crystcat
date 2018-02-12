@@ -1,6 +1,3 @@
-[![Build Status](https://travis-ci.org/gap-packages/crystcat.svg?branch=master)](https://travis-ci.org/gap-packages/crystcat)
-[![Code Coverage](https://codecov.io/github/gap-packages/crystcat/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/crystcat)
-
 The GAP 4 package CrystCat provides a catalog of crystallographic 
 groups of dimensions 2, 3, and 4 which covers most of the data contained 
 in the book "Crystallographic groups of four-dimensional space" by 
@@ -17,7 +14,7 @@ acting from the left and the representation acting from the right.
 CrystCat is distributed together with GAP, and does not require any
 installation. It is loaded with the GAP command
 
-gap> LoadPackage( "crystcat" ); 
+    gap> LoadPackage( "crystcat" ); 
 
 The catalog was brought into GAP format, and ported later to GAP 4 by 
 

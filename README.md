@@ -17,7 +17,7 @@ acting from the left and the representation acting from the right.
 CrystCat is distributed together with GAP, and does not require any
 installation. It is loaded with the GAP command
 
-gap> LoadPackage( "crystcat" ); 
+    gap> LoadPackage( "crystcat" ); 
 
 The catalog was brought into GAP format, and ported later to GAP 4 by 
 
