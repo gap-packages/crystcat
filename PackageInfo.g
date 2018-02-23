@@ -11,9 +11,11 @@ Subtitle := "The crystallographic groups catalog",
 
 Version := "1.1.8",
 
+# Format: dd/mm/yyyy
 Date := "09/02/2018",
 
-ArchiveURL := "https://www.math.uni-bielefeld.de/~gaehler/gap45/CrystCat/crystcat-1.1.8",
+ArchiveURL := Concatenation(
+  "https://www.math.uni-bielefeld.de/~gaehler/gap45/CrystCat/crystcat-", ~.Version ),
 
 ArchiveFormats := ".tar.gz",
 
@@ -64,6 +66,13 @@ computation with these groups are provided by the package \
 
 PackageWWWHome := 
   "https://www.math.uni-bielefeld.de/~gaehler/gap45/packages.php",
+
+SourceRepository := rec(
+  Type := "git",
+  URL := Concatenation( "https://github.com/gap-packages/",
+                        LowercaseString( ~.PackageName ) ) ),
+IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
+SupportEmail := "gaehler@math.uni-bielefeld.de",
 
 PackageDoc  := rec(
   BookName  := "CrystCat",
