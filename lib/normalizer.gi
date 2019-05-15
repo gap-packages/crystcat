@@ -7,7 +7,7 @@
 
 InstallMethod( NormalizerInGLnZ, 
     "for PointGroups of space groups from the cryst. groups catalogue",
-    true, [ IsPointGroup ], 0,
+    true, [ IsPointGroup and IsCyclotomicMatrixGroup ], 0,
 function( P )
     local S, p, N, s, gen;
     S := AffineCrystGroupOfPointGroup( P );
