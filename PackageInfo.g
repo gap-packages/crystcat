@@ -11,8 +11,9 @@ Subtitle := "The crystallographic groups catalog",
 
 Version := "1.1.8",
 
-# Format: dd/mm/yyyy
-Date := "09/02/2018",
+Date := "09/02/2018", # dd/mm/yyyy format
+
+License := "GPL-2.0-or-later",
 
 ArchiveURL := Concatenation(
   "https://www.math.uni-bielefeld.de/~gaehler/gap45/CrystCat/crystcat-", ~.Version ),
