@@ -82,7 +82,6 @@ PackageDoc  := rec(
   PDFFile   := "doc/manual.pdf",
   SixFile   := "doc/manual.six",
   LongTitle := "The crystallographic groups catalog",
-  Autoload  := true
 ),
 
 Dependencies := rec(
