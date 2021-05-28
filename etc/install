@@ -6,11 +6,11 @@
 
 ./make_tar
 
-cp VERSION          ~/WWW/gap45/CrystCat
-cp changelog.html   ~/WWW/gap45/CrystCat
-mv *.tar.gz         ~/WWW/gap45/CrystCat
-cp ../PackageInfo.g ~/WWW/gap45/CrystCat
-cp ../README        ~/WWW/gap45/CrystCat/README.crystcat
+cp VERSION          ~/WWW/gap/CrystCat
+cp changelog.html   ~/WWW/gap/CrystCat
+mv *.tar.gz         ~/WWW/gap/CrystCat
+cp ../PackageInfo.g ~/WWW/gap/CrystCat
+cp ../README        ~/WWW/gap/CrystCat/README.crystcat
 
-cd ~/WWW/gap45; ./get_html; chmod -R a+r *
+cd ~/WWW/gap; ./get_html; chmod -R a+r *
 
