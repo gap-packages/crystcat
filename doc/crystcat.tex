@@ -1,4 +1,3 @@
-\def\x{\times}
 \hyphenation{Cryst-Cat-Record}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -111,23 +110,23 @@ we have $s(v) = g(v) + t$ for all $v \in V$.
 
 If we fix a basis of $V$ and then replace each $v \in V$ by the column
 vector of its coefficients with respect to that basis (and hence $V$
-by the isomorphic column vector space $\R^{n \x 1}$), we can describe
-the linear mapping $g$ involved in $s$ by an $n \x n$ matrix
+by the isomorphic column vector space $\R^{n \times 1}$), we can describe
+the linear mapping $g$ involved in $s$ by an $n \times n$ matrix
 $M_g \in GL_n(\R)$ which acts by multiplication from the left on
-the column vectors in $\R^{n \x 1}$.  Hence, if we identify $V$ with
-$\R^{n \x 1}$, we have $s(v) = M_g v + t$ for all 
-$v \in \R^{n \x 1}$.
+the column vectors in $\R^{n \times 1}$.  Hence, if we identify $V$ with
+$\R^{n \times 1}$, we have $s(v) = M_g v + t$ for all 
+$v \in \R^{n \times 1}$.
 
-Moreover, if we extend each column vector $v \in \R^{n \x 1}$ to a
+Moreover, if we extend each column vector $v \in \R^{n \times 1}$ to a
 column $[ [ v ], [ 1 ] ]$ of length $n+1$ by adding an entry 1 
-in the last position and if we define an $(n+1) \x (n+1)$ matrix 
+in the last position and if we define an $(n+1) \times (n+1)$ matrix 
 $M_s = [ [ M_g, t ], [ 0, 1 ] ]$, we have $[ [ s(v) ], [ 1 ] ] = 
-M_s [ [ v ], [ 1 ] ]$ for all $v \in \R^{n \x 1}$. This means that 
+M_s [ [ v ], [ 1 ] ]$ for all $v \in \R^{n \times 1}$. This means that 
 we can represent the space group $S$ by the isomorphic group 
 $M(S) = \{ M_s | s \in S \}$.  The submatrices $M_g$ occurring in 
-the elements of $M(S)$ form an $n \x n$ matrix group $P(S)$, the 
+the elements of $M(S)$ form an $n \times n$ matrix group $P(S)$, the 
 ``point group'' of $M(S)$.  In fact, we can choose the basis of 
-$\R^{n \x 1}$ such that $M_g \in GL_n(\Z)$ and  $t \in \Q^{n \x 1}$ 
+$\R^{n \times 1}$ such that $M_g \in GL_n(\Z)$ and  $t \in \Q^{n \times 1}$ 
 for all $M_s \in M(S)$.  In particular, the space group 
 representatives that are normally used by the crystallographers
 are of this form, and the book \cite{BBNWZ78} uses the same convention.
@@ -138,17 +137,17 @@ representation of the space group elements by matrices of the form
 $[ [ M_g, t ], [ 0, 1 ] ]$ as described above. Instead of 
 considering the coefficient vectors as columns we may consider 
 them as rows.  Then we can associate to each affine mapping
-$s \in S$ an $(n+1) \x (n+1)$ matrix $M\pif_s =
-[ [ M\pif_{g\pif}, 0 ], [ t\pif, 1 ] ]$ with 
-$M\pif_{g\pif} \in GL_n(\R)$ and $t\pif \in \R^{1 \x n}$ such 
-that $[s(v\pif),1] = [v\pif,1] M\pif_s$ for all 
-$v\pif \in \R^{1 \x n}$, and we may represent $S$ by the matrix 
-group $M\pif(S) = \{ M\pif_s | s \in S \}$.  Again, we can choose 
-the basis of $\R^{1 \x n}$ such that $M\pif_{g\pif} \in GL_n(\Z)$ 
-and $t\pif \in \Q^{1 \x n}$ for all $M\pif_s \in M\pif(S)$.
+$s \in S$ an $(n+1) \times (n+1)$ matrix $M'_s =
+[ [ M'_{g'}, 0 ], [ t', 1 ] ]$ with 
+$M'_{g'} \in GL_n(\R)$ and $t' \in \R^{1 \times n}$ such 
+that $[s(v'),1] = [v',1] M'_s$ for all 
+$v' \in \R^{1 \times n}$, and we may represent $S$ by the matrix 
+group $M'(S) = \{ M'_s | s \in S \}$.  Again, we can choose 
+the basis of $\R^{1 \times n}$ such that $M'_{g'} \in GL_n(\Z)$ 
+and $t' \in \Q^{1 \times n}$ for all $M'_s \in M'(S)$.
 
 From the mathematical point of view, both approaches are equivalent. 
-In particular, $M(S)$ and $M\pif(S)$ are isomorphic, for instance 
+In particular, $M(S)$ and $M'(S)$ are isomorphic, for instance 
 via the isomorphism $\tau$ mapping $M_s \in M(S)$ to 
 $(M_s^{tr})^{-1}$.  Unfortunately, however, neither of the two 
 is a good choice for our {\GAP} catalog.
@@ -165,16 +164,16 @@ properties of the matrix group $M(S)$.  In particular, it contains as
 a leading part the name of the $\Z$-class of the associated point
 group $P(S)$.  Since the classification of space groups by affine
 equivalence is tantamount to their classification by abstract
-isomorphism, $M\pif(S)$ lies in the same affine class as $M(S)$ and
+isomorphism, $M'(S)$ lies in the same affine class as $M(S)$ and
 hence should get the same name as $M(S)$.  But the point group $P(S)$
 that occurs in that name is not always $\Z$-equivalent to the point
-group $P\pif(S)$ of $M\pif(S)$.  For example, the isomorphism $\tau:
-M(S) \to M\pif(S)$ defined above maps the $\Z$-class representative
+group $P'(S)$ of $M'(S)$.  For example, the isomorphism $\tau:
+M(S) \to M'(S)$ defined above maps the $\Z$-class representative
 with the parameters $[3,7,3,2]$ (in the notation described below) to
 the $\Z$-class representative with the parameters $[3,7,3,3]$.  In
 other words:\ The space group names introduced for the groups $M(S)$
 in \cite{BBNWZ78} lead to confusing inconsistencies if assigned to the
-groups $M\pif(S)$.
+groups $M'(S)$.
 
 In order to avoid this confusion we decided that the first convention
 is the lesser evil, and so the {\GAP} catalog follows the book. In
@@ -622,7 +621,7 @@ gap> DisplayZClass( 4, 21, 3, 1 );
 \>MatGroupZClass( <dim>, <IT-number> )
 \>MatGroupZClass( <Hermann-Mauguin-symbol> )
 
-returns a $dim \x dim$ matrix group <M>, say, which is a
+returns a $dim \times dim$ matrix group <M>, say, which is a
 representative of the specified $\Z$-class.  Its generators satisfy
 the defining relators of the finitely presented group which may be
 computed by calling the `FpGroupQClass' function (see above) for the
@@ -669,7 +668,7 @@ gap> CrystCatRecord( M ).parameters;
 \>NormalizerZClass( <Hermann-Mauguin-symbol> )
 
 returns the normalizer <N>, say, in $GL(dim,\Z)$ of the representative
-$dim \x dim$ matrix group which is constructed by the
+$dim \times dim$ matrix group which is constructed by the
 `MatGroupZClass' function (see above).
 
 If the size of <N> is finite, then <N> again lies in some $\Z$-class.
@@ -873,16 +872,16 @@ that matrix group. The generators are given in the representation
 acting from the left on column vectors.
 
 In more details: Let <n> = <dim> be the given dimension, and let $M_1,
-\ldots, M_r$ be the generators of the representative $n \x n$
+\ldots, M_r$ be the generators of the representative $n \times n$
 matrix group of the given $\Z$-class (this is the group which you will
 get if you call the `MatGroupZClass' function (see above) for that
 $\Z$-class).  Then, for the given space-group type, the 
 `SpaceGroupOnLeftBBNWZ' function described below will construct as 
-representative of that space-group type an $(n+1) \x (n+1)$ matrix 
+representative of that space-group type an $(n+1) \times (n+1)$ matrix 
 group which is generated by the <n> translations which are induced 
 by the (standard) basis vectors of the <n>-dimensional Euclidian space, 
 and <r> additional matrices $S_1, \ldots, S_r$ of the form $S_i =
-\left[\matrix{ M_i & t_i \cr 0 & 1 } \right]$, where the $n \x n$
+\left[\matrix{ M_i & t_i \cr 0 & 1 } \right]$, where the $n \times n$
 submatrices $M_i$ are as defined above, and the $t_i$ are <n>-columns
 with rational entries.  The `DisplaySpaceGroupGenerators' function
 saves time by not constructing the group, but just displaying the $r$
