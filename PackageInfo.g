@@ -9,9 +9,9 @@ PackageName := "CrystCat",
 
 Subtitle := "The crystallographic groups catalog",
 
-Version := "1.1.9",
+Version := "1.1.10",
 
-Date := "28/05/2019", # dd/mm/yyyy format
+Date := "29/07/2022", # dd/mm/yyyy format
 
 License := "GPL-2.0-or-later",
 
@@ -85,8 +85,8 @@ PackageDoc  := rec(
 ),
 
 Dependencies := rec(
-  GAP := ">=4.5",
-  NeededOtherPackages := [ [ "Cryst", ">=4.1.8" ] ],
+  GAP := ">=4.11",
+  NeededOtherPackages := [ [ "Cryst", ">=4.1.24" ] ],
   SuggestedOtherPackages := [],
   ExternalConditions := []
 ),
