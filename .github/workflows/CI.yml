@@ -28,7 +28,7 @@ jobs:
           - '4.14'
           - '4.13'
           - '4.12'
-          - '4.11'
+          #- '4.11'  # fails because `cryst` there is too old
 
     steps:
       - uses: actions/checkout@v5
