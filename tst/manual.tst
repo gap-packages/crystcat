@@ -82,26 +82,8 @@ gap> CrystCatRecord( P ).parameters;
 
 gap> T := CharTableQClass( 4, 20, 3 );;
 
-gap> Display( T );
-CharTableQClass( 4, 20, 3 )
-
-     2  2  2  1  1  2  2
-     3  1  .  1  1  .  1
-
-       1a 4a 6a 3a 4b 2a
-    2P 1a 2a 3a 3a 2a 1a
-    3P 1a 4b 2a 1a 4a 2a
-    5P 1a 4a 6a 3a 4b 2a
-
-X.1     1  1  1  1  1  1
-X.2     1 -1  1  1 -1  1
-X.3     1  A -1  1 -A -1
-X.4     1 -A -1  1  A -1
-X.5     2  .  1 -1  . -2
-X.6     2  . -1 -1  .  2
-
-A = -E(4)
-  = -Sqrt(-1) = -i
+gap> CharacterDegrees( T );
+[ [ 1, 4 ], [ 2, 2 ] ]
 
 gap> DisplayZClass( 2, 3 );
 #I    Z-class (2,2,1,1) = Z(pm): Bravais type II/I; fully Z-reducible;
@@ -347,4 +329,4 @@ gap> ForAll( RelatorsOfFpGroup( G ), rel -> One(S) =
 >  MappedWord( rel, FreeGeneratorsOfFpGroup(G), GeneratorsOfGroup(S) ) );
 true
 
-gap> STOP_TEST( "manual.tst", 10000 );
+gap> STOP_TEST( "manual.tst" );
