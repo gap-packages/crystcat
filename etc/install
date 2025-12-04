@@ -10,7 +10,7 @@ cp VERSION          ~/WWW/gap/CrystCat
 cp changelog.html   ~/WWW/gap/CrystCat
 mv *.tar.gz         ~/WWW/gap/CrystCat
 cp ../PackageInfo.g ~/WWW/gap/CrystCat
-cp ../README        ~/WWW/gap/CrystCat/README.crystcat
+tail +4 ../README.md > ~/WWW/gap/CrystCat/README.crystcat
 
 cd ~/WWW/gap; ./get_html; chmod -R a+r *
 

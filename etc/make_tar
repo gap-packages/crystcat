@@ -10,7 +10,8 @@ rm -f $PKGTAR*
 
 # make the package archive
 mkdir -p crystcat/doc crystcat/lib crystcat/grp crystcat/htm crystcat/tst
-cp -p ../*.g ../README ../Changelog ../GPL crystcat/
+cp -p ../*.g ../Changelog ../GPL crystcat/
+tail +4 ../README.md > crystcat/README
 cp -p ../doc/manual.bbl ../doc/manual.six ../doc/manual.lab ../doc/manual.toc \
   ../doc/manual.mst ../doc/manual.pdf ../doc/*.tex ../doc/make_doc crystcat/doc/
 cp -p ../lib/*.g[di] crystcat/lib/
