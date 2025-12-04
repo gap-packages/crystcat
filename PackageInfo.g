@@ -85,7 +85,7 @@ PackageDoc  := rec(
 ),
 
 Dependencies := rec(
-  NeededOtherPackages := [ [ "Cryst", ">=4.1.30" ] ],
+  NeededOtherPackages := [ [ "Cryst", ">=4.1.25" ] ],
   SuggestedOtherPackages := [],
   ExternalConditions := []
 ),
