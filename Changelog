@@ -1,3 +1,7 @@
+Version 1.1.11
+
+  - adjusted tests to new GAP version
+
 Version 1.1.10
 
   - Improved documentation conversion and formatting
