@@ -53,7 +53,7 @@ CommunicatedBy := "Herbert Pahlings (Aachen)",
 
 AcceptDate := "02/2000",
 
-README_URL := "https://www.math.uni-bielefeld.de/~gaehler/gap/CrystCat/README.crystcat",
+README_URL := "https://www.math.uni-bielefeld.de/~gaehler/gap/CrystCat/README.md",
 PackageInfoURL := "https://www.math.uni-bielefeld.de/~gaehler/gap/CrystCat/PackageInfo.g",
 
 AbstractHTML := 
