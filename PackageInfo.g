@@ -85,6 +85,7 @@ PackageDoc  := rec(
 ),
 
 Dependencies := rec(
+  GAP := ">=4.12",
   NeededOtherPackages := [ [ "Cryst", ">=4.1.25" ] ],
   SuggestedOtherPackages := [],
   ExternalConditions := []
