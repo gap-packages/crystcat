@@ -1,4 +1,3 @@
-<!-- TODO(g2g) unhandled macro \hyphenation -->Cryst-Cat-Record
 <Chapter Label="The Crystallographic Groups Catalog">
 <Heading>The Crystallographic Groups Catalog</Heading>
 <Index>crystallographic groups</Index>
@@ -17,7 +16,7 @@ by &Cryst; at their disposal, and are no longer dumb lists of generators.
 Moreover, space groups are now fully supported in both the representation
 acting from the left and the representation acting from the right.
 <P/>
-In 2001, Bernd Souvignier has discovered an error in the above mentioned
+In 2001, Bernd Souvignier discovered an error in the above mentioned
 book: On page 118, in the tabulation of enantiomorphic space-group types,
 it is wrongly claimed that the (affine) four-dimensional space-group
 type 08/01/01/002 splits into an enantiomorphic pair of (proper)
@@ -26,7 +25,7 @@ space-group number. This asterisk has to be removed. As a
 consequence, the number of four-dimensional space-group types
 splitting into enantiomorphic pairs (given on page 11 and page 52
 of the book) reduces from 112 to 111. An erratum has been submitted
-to  Acta Cryst..
+to Acta Cryst.
 <P/>
 The only implication of this correction for the package &CrystCat;
 is that the output of the function
@@ -45,7 +44,7 @@ This has been done in the release &GAP; 4.3.
 <Section Label="How to access the data of the book">
 <Heading>How to access the data of the book</Heading>
 Among others, the catalog offers functions which provide access to the
-data listed in the Tables 1, 5, and 6 of <Cite Key="BBNWZ78"/>:
+data listed in Tables 1, 5, and 6 of <Cite Key="BBNWZ78"/>:
 <List>
 <Item> 
     The information on the crystal families listed in Table 1 can
@@ -182,12 +181,12 @@ the one that seems more appropriate in the particular situation.
 The function <C>SpaceGroupOnLeftBBNWZ</C> constructs a space group in
 the <Q>crystallographic</Q> representation acting on the left,
 whereas <C>SpaceGroupOnRightBBNWZ</C> constructs a space group in the
-representation acting on the right, as preferred by GAP. In order to 
+representation acting on the right, as preferred by &GAP;. In order to 
 avoid long function names (and in order to avoid mixing groups in
-different representations), one can set one<!-- TODO(g2g) unhandled macro \pif -->s own default 
+different representations), one can set one's own default 
 with the function <C>SetCrystGroupDefaultAction</C> 
 (see <Ref Func="SetCrystGroupDefaultAction" BookName="ref"/>), 
-which takes as argument either <C>LeftAction</C> of <C>RightAction</C>. 
+which takes as argument either <C>LeftAction</C> or <C>RightAction</C>. 
 <C>SpaceGroupBBNWZ</C> then constructs a space group in this default
 representation. Initially, the default is <C>RightAction</C>.
 <P/>
@@ -254,7 +253,7 @@ the now proposed definition of crystal system is used.
 The second remark just concerns a  different terminology in the tables of
 <Cite Key="BBNWZ78"/> and in the current catalog. In group theory, the number of
 elements of a  finite group  usually is  called  the <Q>order</Q> of  the
-group.   This notation has  been  used throughout   in  the book.   Here,
+group.   This terminology has been used throughout the book.   Here,
 however,  we  will follow the    &GAP;   conventions and use  the   term
 <Q>size</Q> instead.
 </Section>
@@ -448,7 +447,7 @@ presentation given in Table 1 of <Cite Key="BBNWZ78"/> except for the fact
 that its generators are listed in reverse order.  The reason for this
 change is that, whenever the group in question is solvable, the
 resulting generators form a pcgs (as defined in section <Ref Chap="Polycyclic Groups" BookName="ref"/> in the reference manual of &GAP;) if they are numbered 
-<Q>from the top to the bottom</Q>, and the presentation is a 
+<Q>from top to bottom</Q>, and the presentation is a 
 power-commutator presentation.  The <C>PcGroupQClass</C> function described 
 next will make use of this fact in order to construct a pc group 
 isomorphic to <A>F</A>.
@@ -458,7 +457,7 @@ group  returned by the <C>MatGroupZClass</C>  function (see below) not only is
 isomorphic to <A>F</A>, but also its  generators satisfy the defining relators
 of <A>F</A>.
 <P/>
-Besides  of the usual components,  <A>F</A> will have an attribute
+Besides the usual components, <A>F</A> will have an attribute
 <C>CrystCatRecord</C>, which is a record with component
 <C>parameters</C>, which keeps a list of the parameters
 that specify the given <M>&QQ;</M>-class.
@@ -491,7 +490,7 @@ above) and then constructing from it an isomorphic pc group.  If the
 underlying pcgs is not a prime orders pcgs (see section <Ref Chap="Polycyclic Groups" BookName="ref"/>), then it will be refined appropriately (and a warning will 
 be displayed).
 <P/>
-Besides of the usual components, <A>P</A> will have an attribute
+Besides the usual components, <A>P</A> will have an attribute
 <C>CrystCatRecord</C>, which is a record with component
 <C>parameters</C>, which saves a list of the parameters that specify 
 the given <M>&QQ;</M>-class.
@@ -628,7 +627,7 @@ The generators of <A>M</A> are the same matrices as those given  in Table 1 of
 to  keep them  in parallel  to  the abstract  generators provided by  the
 <C>FpGroupQClass</C> function (see above).
 <P/>
-Besides of the usual components, <A>M</A> will have an attribute
+Besides the usual components, <A>M</A> will have an attribute
 <C>CrystCatRecord</C>, which is a record with two components.  The
 first component is <C>parameters</C>, which saves a list of the parameters
 that specify the given <M>&ZZ;</M>-class. The second component is
@@ -874,7 +873,7 @@ group of the specified space-group type without actually constructing
 that matrix group. The generators are given in the representation
 acting from the left on column vectors.
 <P/>
-In more details: Let <A>n</A> = <A>dim</A> be the given dimension, and let <M>M_1,
+In more detail: Let <A>n</A> = <A>dim</A> be the given dimension, and let <M>M_1,
 \ldots, M_r</M> be the generators of the representative <M>n \times n</M>
 matrix group of the given <M>&ZZ;</M>-class (this is the group which you will
 get if you call the <C>MatGroupZClass</C> function (see above) for that
@@ -882,7 +881,7 @@ get if you call the <C>MatGroupZClass</C> function (see above) for that
 <C>SpaceGroupOnLeftBBNWZ</C> function described below will construct as 
 representative of that space-group type an <M>(n+1) \times (n+1)</M> matrix 
 group which is generated by the <A>n</A> translations which are induced 
-by the (standard) basis vectors of the <A>n</A>-dimensional Euclidian space, 
+by the (standard) basis vectors of the <A>n</A>-dimensional Euclidean space, 
 and <A>r</A> additional matrices <M>S_1, \ldots, S_r</M> of the form <M>S_i =
 \left[\matrix{ M_i &amp; t_i \cr 0 &amp; 1 } \right]</M>, where the <M>n \times n</M>
 submatrices <M>M_i</M> are as defined above, and the <M>t_i</M> are <A>n</A>-columns

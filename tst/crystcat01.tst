@@ -10,11 +10,11 @@
 #
 gap> START_TEST("crystcat01.tst");
 
-# doc/crystcat.xml:271-274
+# doc/crystcat.xml:270-273
 gap> n := NrCrystalFamilies( 4 );
 23
 
-# doc/crystcat.xml:302-314
+# doc/crystcat.xml:301-313
 gap> DisplayCrystalFamily( 4, 17 );
 #I Family XVII: cubic orthogonal; 2 free parameters;
 #I  Q-decomposition pattern 1+3; R-decomposition pattern 1+3;
@@ -27,18 +27,18 @@ gap> DisplayCrystalFamily( 4, 21 );
 #I Family XXI: di-isohexagonal orthogonal; 1 free parameter;
 #I  R-irreducible; 2 crystal systems; 2 Bravais flocks
 
-# doc/crystcat.xml:328-331
+# doc/crystcat.xml:327-330
 gap> n := NrCrystalSystems( 2 );
 4
 
-# doc/crystcat.xml:355-361
+# doc/crystcat.xml:354-360
 gap> for sys in [ 1 .. 4 ] do  DisplayCrystalSystem( 2, sys );  od;
 #I  Crystal system 1: 2 Q-classes; holohedry (2,1,2)
 #I  Crystal system 2: 2 Q-classes; holohedry (2,2,2)
 #I  Crystal system 3: 2 Q-classes; holohedry (2,3,2)
 #I  Crystal system 4: 4 Q-classes; holohedry (2,4,4)
 
-# doc/crystcat.xml:416-432
+# doc/crystcat.xml:415-431
 gap> DisplayQClass( "p2" );
 #I   Q-class H (2,1,2): size 2; isomorphism type 2.1 = C2;
 #I    Q-constituents 2*(2,1,2); cc; 1 Z-class; 1 space group
@@ -55,7 +55,7 @@ gap> DisplayQClass( 4, 29, 1 );
 #I  *Q-class (4,29,1): size 18; isomorphism type 18.3 = D6xC3;
 #I    R-irreducible; 3 Z-classes; 5 space grps
 
-# doc/crystcat.xml:465-476
+# doc/crystcat.xml:464-475
 gap> F := FpGroupQClass( 4, 20, 3 );
 FpGroupQClass( 4, 20, 3 )
 gap> GeneratorsOfGroup( F );
@@ -67,7 +67,7 @@ gap> Size( F );
 gap> CrystCatRecord( F ).parameters;
 [ 4, 20, 3 ]
 
-# doc/crystcat.xml:498-511
+# doc/crystcat.xml:497-510
 gap> P := PcGroupQClass( 4, 31, 3 );
 #I  Warning: a non-solvable group can't be represented as a pc group
 fail
@@ -81,12 +81,12 @@ gap> Size( P );
 gap> CrystCatRecord( P ).parameters;
 [ 4, 20, 3 ]
 
-# doc/crystcat.xml:544-548
+# doc/crystcat.xml:543-547
 gap> T := CharTableQClass( 4, 20, 3 );;
 gap> CharacterDegrees( T );
 [ [ 1, 4 ], [ 2, 2 ] ]
 
-# doc/crystcat.xml:599-612
+# doc/crystcat.xml:598-611
 gap> DisplayZClass( 2, 3 );
 #I    Z-class (2,2,1,1) = Z(pm): Bravais type II/I; fully Z-reducible;
 #I     2 space groups; cohomology group size 2
@@ -100,7 +100,7 @@ gap> DisplayZClass( 4, 21, 3, 1 );
 #I   *Z-class (4,21,3,1): Bravais type XVI/I; Z-reducible;
 #I     1 space group; cohomology group size 1
 
-# doc/crystcat.xml:639-659
+# doc/crystcat.xml:638-658
 gap> M := MatGroupZClass( 4, 20, 3, 1 );
 MatGroupZClass( 4, 20, 3, 1 )
 gap> for g in GeneratorsOfGroup( M ) do
@@ -121,7 +121,7 @@ gap> Size( M );
 gap> CrystCatRecord( M ).parameters;
 [ 4, 20, 3, 1 ]
 
-# doc/crystcat.xml:677-723
+# doc/crystcat.xml:676-722
 gap> N := NormalizerZClass( 4, 20, 3, 1 );
 NormalizerZClass( 4, 20, 3, 1 )
 gap> for g in GeneratorsOfGroup( N ) do
@@ -168,15 +168,15 @@ infinity
 gap> HasCrystCatRecord( M );
 false
 
-# doc/crystcat.xml:741-744
+# doc/crystcat.xml:740-743
 gap> NrDadeGroups( 4 );
 9
 
-# doc/crystcat.xml:751-754
+# doc/crystcat.xml:750-753
 gap> D := DadeGroup( 4, 7 );
 MatGroupZClass( 4, 31, 7, 2 )
 
-# doc/crystcat.xml:765-775
+# doc/crystcat.xml:764-774
 gap> dadeNums := DadeGroupNumbersZClass( 4, 4, 1, 2 );
 [ 1, 5, 8 ]
 gap> for d in dadeNums do
@@ -187,7 +187,7 @@ MatGroupZClass( 4, 20, 22, 1 ) of size 96
 MatGroupZClass( 4, 30, 13, 1 ) of size 288
 MatGroupZClass( 4, 32, 21, 1 ) of size 384
 
-# doc/crystcat.xml:793-806
+# doc/crystcat.xml:792-805
 gap> DadeGroupNumbersZClass( 2, 2, 1, 2 );
 [ 1, 2 ]
 gap> ZClassRepsDadeGroup( 2, 2, 1, 2, 1 );
@@ -201,11 +201,11 @@ gap> CrystCatRecord( R ).parameters;
 gap> CrystCatRecord( R ).conjugator;
 [ [ 1, 0 ], [ -1, 1 ] ]
 
-# doc/crystcat.xml:819-822
+# doc/crystcat.xml:818-821
 gap> N := NrSpaceGroupTypesZClass( 4, 4, 1, 1 );
 13
 
-# doc/crystcat.xml:854-864
+# doc/crystcat.xml:853-863
 gap> DisplaySpaceGroupType( 2, 17 );
 #I     Space-group type (2,4,4,1,1); IT(17) = p6mm; orbit size 1
 gap> DisplaySpaceGroupType( "Pm-3" );
@@ -216,7 +216,7 @@ gap> DisplaySpaceGroupType( 3, 6, 1, 1, 4 );
 #I    *Space-group type (3,6,1,1,4); IT(169) = P61, IT(170) = P65;
 #I      orbit size 2; fp-free
 
-# doc/crystcat.xml:892-906
+# doc/crystcat.xml:891-905
 gap> DisplaySpaceGroupGenerators( "P61" );
 #I  Non-translation generators of SpaceGroupOnLeftBBNWZ( 3, 6, 1, 1, 4 )
 
@@ -231,7 +231,7 @@ gap> DisplaySpaceGroupGenerators( "P61" );
   [    0,    0,    0,    1 ] ]
 
 
-# doc/crystcat.xml:919-952
+# doc/crystcat.xml:918-951
 gap> S := SpaceGroupOnLeftBBNWZ( "P61" );
 SpaceGroupOnLeftBBNWZ( 3, 6, 1, 1, 4 )
 gap> for s in GeneratorsOfGroup( S ) do
@@ -265,7 +265,7 @@ gap> for s in GeneratorsOfGroup( S ) do
 gap> CrystCatRecord( S ).parameters;
 [ 3, 6, 1, 1, 4 ]
 
-# doc/crystcat.xml:970-1001
+# doc/crystcat.xml:969-1000
 gap> T := SpaceGroupOnRightBBNWZ( S );
 SpaceGroupOnRightBBNWZ( 3, 6, 1, 1, 4 )
 gap> for m in GeneratorsOfGroup( T ) do
@@ -297,7 +297,7 @@ gap> for m in GeneratorsOfGroup( T ) do
   [  0,  0,  1,  1 ] ]
 
 
-# doc/crystcat.xml:1026-1046
+# doc/crystcat.xml:1025-1045
 gap> G := FpGroupSpaceGroupBBNWZ( S );    
 FpGroupSpaceGroupOnLeftBBNWZ( 3, 6, 1, 1, 4 )
 gap> for rel in RelatorsOfFpGroup( G ) do Print( rel, "\n" ); od;
