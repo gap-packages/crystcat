@@ -6,18 +6,18 @@ PKGTAR=crystcat-1.1.11.tar
 rm -f $PKGTAR*
 
 # update documentaion
-(cd ../doc; ./make_doc;)
+(cd .. && gap -A -q --quitonbreak makedoc.g)
 
 # make the package archive
-mkdir -p crystcat/doc crystcat/lib crystcat/grp crystcat/htm crystcat/tst
+mkdir -p crystcat/doc crystcat/lib crystcat/grp crystcat/tst
 cp -p ../*.g ../Changelog ../GPL crystcat/
 tail +4 ../README.md > crystcat/README
-cp -p ../doc/manual.bbl ../doc/manual.six ../doc/manual.lab ../doc/manual.toc \
-  ../doc/manual.mst ../doc/manual.pdf ../doc/*.tex ../doc/make_doc crystcat/doc/
+cp -p ../doc/*.xml ../doc/*.bib ../doc/*.css ../doc/*.js \
+  ../doc/chap*.html ../doc/chap*.txt ../doc/chooser.html \
+  ../doc/manual.lab ../doc/manual.six ../doc/manual.pdf crystcat/doc/
 cp -p ../lib/*.g[di] crystcat/lib/
 cp -p ../grp/crystcat.grp crystcat/grp/
 cp -p ../tst/*.tst ../tst/testall.g crystcat/tst/
-cp -p ../htm/*.htm crystcat/htm/
 chmod -R a+rX crystcat
 tar cvf $PKGTAR crystcat
 chmod a+r $PKGTAR
