@@ -1,0 +1,1049 @@
+<Chapter Label="The Crystallographic Groups Catalog">
+<Heading>The Crystallographic Groups Catalog</Heading>
+<Index>crystallographic groups</Index>
+<Index>crystcat</Index>
+<P/>
+The package &CrystCat; provides a catalog of crystallographic groups
+of dimensions 2, 3, and 4 which covers most of the data contained 
+in the book <Q>Crystallographic groups of four-dimensional space</Q>
+<Cite Key="BBNWZ78"/>. It has been brought into &GAP; format by Volkmar
+Felsch.
+<P/>
+The &GAP; 4 version of the catalog requires the package &Cryst;,
+which is loaded automatically. The benefit of this is that space groups 
+extracted from the catalog now have the rich set of methods provided
+by &Cryst; at their disposal, and are no longer dumb lists of generators.
+Moreover, space groups are now fully supported in both the representation
+acting from the left and the representation acting from the right.
+<P/>
+In 2001, Bernd Souvignier discovered an error in the above mentioned
+book: On page 118, in the tabulation of enantiomorphic space-group types,
+it is wrongly claimed that the (affine) four-dimensional space-group
+type 08/01/01/002 splits into an enantiomorphic pair of (proper)
+space-group types. This is indicated by an asterisk preceding the
+space-group number. This asterisk has to be removed. As a
+consequence, the number of four-dimensional space-group types
+splitting into enantiomorphic pairs (given on page 11 and page 52
+of the book) reduces from 112 to 111. An erratum has been submitted
+to Acta Cryst.
+<P/>
+The only implication of this correction for the package &CrystCat;
+is that the output of the function
+<Log><![CDATA[
+DisplaySpaceGroupType( 4, 8, 1, 1, 2 );
+]]></Log>
+had to be changed from
+<Log><![CDATA[
+#I    *Space-group type (4,8,1,1,2); orbit size 2; fp-free
+]]></Log>
+to
+<Log><![CDATA[
+#I     Space-group type (4,8,1,1,2); orbit size 2; fp-free
+]]></Log>
+This has been done in the release &GAP; 4.3.
+<Section Label="How to access the data of the book">
+<Heading>How to access the data of the book</Heading>
+Among others, the catalog offers functions which provide access to the
+data listed in Tables 1, 5, and 6 of <Cite Key="BBNWZ78"/>:
+<List>
+<Item> 
+    The information on the crystal families listed in Table 1 can
+    be reproduced using the <C>DisplayCrystalFamily</C> function.
+</Item>
+<Item> 
+    Similarly, the <C>DisplayCrystalSystem</C> function can be
+    used to reproduce the information on the crystal systems
+    provided in Table 1.
+</Item>
+<Item> 
+    The information given in the <M>&QQ;</M>-class headlines of
+    Table 1 can be displayed by the <C>DisplayQClass</C> function,
+    whereas the <C>FpGroupQClass</C> function can be used to reproduce
+    the presentations that are listed in Table 1 for the <M>&QQ;</M>-class
+    representatives.
+</Item>
+<Item> 
+    The information given in the <M>&ZZ;</M>-class headlines of Table 1
+    will be covered by the results of the <C>DisplayZClass</C> function,
+    and the matrix generators of the <M>&ZZ;</M>-class representatives can
+    be constructed by calling the <C>MatGroupZClass</C> function.
+</Item>
+<Item> 
+    The <C>DisplaySpaceGroupType</C> and the
+    <C>DisplaySpaceGroupGenerators</C> functions can be used to
+    reproduce all of the information on the space-group types that
+    is provided in Table 1.
+</Item>
+<Item> 
+    The normalizers listed in Table 5 can be reproduced by
+    calling the <C>NormalizerZClass</C> function.
+</Item>
+<Item> 
+    Finally, the <C>CharTableQClass</C> function will compute the
+    character tables listed in Table 6, whereas the isomorphism
+    types given in Table 6 may be obtained by calling the
+    <C>DisplayQClass</C> function.  </Item>
+</List>
+The display functions mentioned in the above list print their output
+with different indentation.  So, calling them in a suitably nested
+loop, you may produce a listing in which the information about the
+objects of different type will be properly indented as has been done
+in Table 1 of <Cite Key="BBNWZ78"/>.
+</Section>
+<Section Label="Representation of space groups">
+<Heading>Representation of space groups</Heading>
+Probably the most important function in the catalog is the
+<C>SpaceGroupBBNWZ</C> function which provides representatives of the
+affine classes of space groups.  A space group of dimension <M>n</M> is
+represented by an <M>(n+1)</M>-dimensional rational matrix group as
+follows.
+<P/>
+If <M>S</M> is an <M>n</M>-dimensional space group, then each element <M>s</M>
+in <M>S</M> is an affine mapping <M>s: V \to V</M> of an <M>n</M>-dimensional 
+<M>&RR;</M>-vector space <M>V</M> onto itself.  Hence <M>s</M> can be written as 
+the product of an appropriate invertible linear mapping
+<M>g: V \to V</M> and a translation by some translation
+vector <M>t \in V</M> such that, if we write mappings from the left, 
+we have <M>s(v) = g(v) + t</M> for all <M>v \in V</M>.
+<P/>
+If we fix a basis of <M>V</M> and then replace each <M>v \in V</M> by the column
+vector of its coefficients with respect to that basis (and hence <M>V</M>
+by the isomorphic column vector space <M>&RR;^{n \times 1}</M>), we can describe
+the linear mapping <M>g</M> involved in <M>s</M> by an <M>n \times n</M> matrix
+<M>M_g \in GL_n(&RR;)</M> which acts by multiplication from the left on
+the column vectors in <M>&RR;^{n \times 1}</M>.  Hence, if we identify <M>V</M> with
+<M>&RR;^{n \times 1}</M>, we have <M>s(v) = M_g v + t</M> for all 
+<M>v \in &RR;^{n \times 1}</M>.
+<P/>
+Moreover, if we extend each column vector <M>v \in &RR;^{n \times 1}</M> to a
+column <M>[ [ v ], [ 1 ] ]</M> of length <M>n+1</M> by adding an entry 1 
+in the last position and if we define an <M>(n+1) \times (n+1)</M> matrix 
+<M>M_s = [ [ M_g, t ], [ 0, 1 ] ]</M>, we have <M>[ [ s(v) ], [ 1 ] ] = 
+M_s [ [ v ], [ 1 ] ]</M> for all <M>v \in &RR;^{n \times 1}</M>. This means that 
+we can represent the space group <M>S</M> by the isomorphic group 
+<M>M(S) = { M_s | s \in S }</M>.  The submatrices <M>M_g</M> occurring in 
+the elements of <M>M(S)</M> form an <M>n \times n</M> matrix group <M>P(S)</M>, the 
+<Q>point group</Q> of <M>M(S)</M>.  In fact, we can choose the basis of 
+<M>&RR;^{n \times 1}</M> such that <M>M_g \in GL_n(&ZZ;)</M> and  <M>t \in &QQ;^{n \times 1}</M> 
+for all <M>M_s \in M(S)</M>.  In particular, the space group 
+representatives that are normally used by the crystallographers
+are of this form, and the book <Cite Key="BBNWZ78"/> uses the same convention.
+<P/>
+The representation described above is the one usually used by
+crystallographers. There is, however, an alternative to the
+representation of the space group elements by matrices of the form
+<M>[ [ M_g, t ], [ 0, 1 ] ]</M> as described above. Instead of 
+considering the coefficient vectors as columns we may consider 
+them as rows.  Then we can associate to each affine mapping
+<M>s \in S</M> an <M>(n+1) \times (n+1)</M> matrix <M>M'_s =
+[ [ M'_{g'}, 0 ], [ t', 1 ] ]</M> with 
+<M>M'_{g'} \in GL_n(&RR;)</M> and <M>t' \in &RR;^{1 \times n}</M> such 
+that <M>[s(v'),1] = [v',1] M'_s</M> for all 
+<M>v' \in &RR;^{1 \times n}</M>, and we may represent <M>S</M> by the matrix 
+group <M>M'(S) = { M'_s | s \in S }</M>.  Again, we can choose 
+the basis of <M>&RR;^{1 \times n}</M> such that <M>M'_{g'} \in GL_n(&ZZ;)</M> 
+and <M>t' \in &QQ;^{1 \times n}</M> for all <M>M'_s \in M'(S)</M>.
+<P/>
+From the mathematical point of view, both approaches are equivalent. 
+In particular, <M>M(S)</M> and <M>M'(S)</M> are isomorphic, for instance 
+via the isomorphism <M>\tau</M> mapping <M>M_s \in M(S)</M> to 
+<M>(M_s^{tr})^{-1}</M>.  Unfortunately, however, neither of the two 
+is a good choice for our &GAP; catalog.
+<P/>
+The first convention, using matrices which act on column vectors from
+the left, is not consistent with the fact that actions in &GAP; are
+usually from the right.
+<P/>
+On the other hand, if we choose the second convention, we run into a
+problem with the names of the space groups as introduced in
+<Cite Key="BBNWZ78"/>. Any such name does not just describe the abstract
+isomorphism type of the respective space group <M>S</M>, but reflects
+properties of the matrix group <M>M(S)</M>.  In particular, it contains as
+a leading part the name of the <M>&ZZ;</M>-class of the associated point
+group <M>P(S)</M>.  Since the classification of space groups by affine
+equivalence is tantamount to their classification by abstract
+isomorphism, <M>M'(S)</M> lies in the same affine class as <M>M(S)</M> and
+hence should get the same name as <M>M(S)</M>.  But the point group <M>P(S)</M>
+that occurs in that name is not always <M>&ZZ;</M>-equivalent to the point
+group <M>P'(S)</M> of <M>M'(S)</M>.  For example, the isomorphism <M>\tau:
+M(S) \to M'(S)</M> defined above maps the <M>&ZZ;</M>-class representative
+with the parameters <M>[3,7,3,2]</M> (in the notation described below) to
+the <M>&ZZ;</M>-class representative with the parameters <M>[3,7,3,3]</M>.  In
+other words: The space group names introduced for the groups <M>M(S)</M>
+in <Cite Key="BBNWZ78"/> lead to confusing inconsistencies if assigned to the
+groups <M>M'(S)</M>.
+<P/>
+In order to avoid this confusion we decided that the first convention
+is the lesser evil, and so the &GAP; catalog follows the book. In
+particular, all functions listed in section <Ref Sect="How to access the data of the book"/> use the convention of the book. The space groups, however,
+can be constructed in both representations, so that the user can choose
+the one that seems more appropriate in the particular situation.
+The function <C>SpaceGroupOnLeftBBNWZ</C> constructs a space group in
+the <Q>crystallographic</Q> representation acting on the left,
+whereas <C>SpaceGroupOnRightBBNWZ</C> constructs a space group in the
+representation acting on the right, as preferred by &GAP;. In order to 
+avoid long function names (and in order to avoid mixing groups in
+different representations), one can set one's own default 
+with the function <C>SetCrystGroupDefaultAction</C> 
+(see <Ref Func="SetCrystGroupDefaultAction" BookName="ref"/>), 
+which takes as argument either <C>LeftAction</C> or <C>RightAction</C>. 
+<C>SpaceGroupBBNWZ</C> then constructs a space group in this default
+representation. Initially, the default is <C>RightAction</C>.
+<P/>
+The space groups constructed from the catalog are matrix groups, which
+in addition have the property <C>IsAffineCrystGroupOnLeft</C> (or
+<C>IsAffineCrystGroupOnRight</C>, respectively). The package &Cryst;
+provides methods to compute with such groups. &Cryst; is necessary
+for any serious computation with space groups, because the support of
+plain &GAP; for infinite matrix groups (such as space groups) is very
+limited.
+<P/>
+Before we describe all available catalog functions in detail, we have
+to add two remarks.
+<P/>
+<E>Remark 1:</E>
+The concepts  used  in  this section are   defined  in chapter 1   (Basic
+definitions) of <Cite Key="BBNWZ78"/>.  However, note that the definition of the
+concept of a crystal system given on page  16 of that  book relies on the
+following statement about <M>&QQ;</M>-classes:
+<List>
+<Mark></Mark>
+<Item>For a  <M>&QQ;</M>-class  <A>C</A>  there is a unique holohedry <A>H</A> such that
+  each  f.u. group in <A>C</A>  is a subgroup of some  f.u. group in
+  <A>H</A>,  but is not  a subgroup of any  f.u. group  belonging to a
+  holohedry of smaller order.</Item>
+</List>
+This  statement is correct for  dimensions 1, 2,  3, and 4, and hence the
+definition of <Q>crystal system</Q> given on page 16 of <Cite Key="BBNWZ78"/> is
+known  to   be unambiguous for   these  dimensions.  However, there  is a
+counterexample to  this statement in seven-dimensional  space so that the
+definition breaks down for some higher dimensions.
+<P/>
+Therefore,  the authors of  the book have  since proposed to replace this
+definition of <Q>crystal system</Q>  by the  following much simpler  one,
+which has been discussed in more detail in <Cite Key="NPW81"/>. To formulate it,
+we use    the   intersections  of <M>&QQ;</M>-classes    and  Bravais  flocks as
+introduced on page 17 of <Cite Key="BBNWZ78"/>, and we define the classification
+of the set of all <M>&ZZ;</M>-classes into crystal systems as follows:
+<List>
+<Mark></Mark>
+<Item><E>Definition</E>:  A crystal system  (introduced as an  equivalence
+  class  of   <M>&ZZ;</M>-classes)   consists of  full  geometric  crystal
+  classes.  The <M>&ZZ;</M>-classes  of  two  (geometric)  crystal classes
+  belong to the same crystal system  if and only if these geometric
+  crystal  classes  intersect  the same  set of  Bravais  flocks of
+  <M>&ZZ;</M>-classes.</Item>
+</List>
+From  this  definition  of  a  crystal system  of  <M>&ZZ;</M>-classes  one then
+obtains  crystal systems of f.u.  groups,  of space-group types, and of
+space groups in the same manner as with the  preceding definitions in the
+book.
+<P/>
+The new definition is unambiguous for all dimensions. Moreover, it can be
+checked  from  the   tables   in the  book   that  it   defines  the same
+classification as the old one for dimensions 1, 2, 3, and 4.
+<P/>
+It should  be noted that  the concept of  crystal  family is well-defined
+independently of the dimension if one uses the <Q>more natural</Q> second
+definition of it at the end of page 17. Moreover, the first definition of
+crystal family on page  17 defines the same concept  as the second one if
+the now proposed definition of crystal system is used.
+<P/>
+<E>Remark 2:</E>
+The second remark just concerns a  different terminology in the tables of
+<Cite Key="BBNWZ78"/> and in the current catalog. In group theory, the number of
+elements of a  finite group  usually is  called  the <Q>order</Q> of  the
+group.   This terminology has been used throughout the book.   Here,
+however,  we  will follow the    &GAP;   conventions and use  the   term
+<Q>size</Q> instead.
+</Section>
+<Section Label="Crystal Families">
+<Heading>Crystal Families</Heading>
+<ManSection>
+<Func Name="NrCrystalFamilies" Arg="dim"/>
+<Description>
+returns the number of crystal families in case of dimension <A>dim</A>.  It
+can be used to formulate loops over the crystal families.
+<P/>
+There are 4, 6, and 23 crystal families of dimension 2, 3, and 4,
+respectively.
+<Example><![CDATA[
+gap> n := NrCrystalFamilies( 4 );
+23
+]]></Example>
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="DisplayCrystalFamily" Arg="dim, family"/>
+<Description>
+displays for the specified crystal family essentially the same
+information as is provided for that family in Table 1 of
+<Cite Key="BBNWZ78"/>, namely
+<List>
+<Item> the family name,
+
+</Item>
+<Item> the number of parameters,
+
+</Item>
+<Item> the common rational decomposition pattern,
+
+</Item>
+<Item> the common real decomposition pattern,
+
+</Item>
+<Item> the number of crystal systems in the family, and
+
+</Item>
+<Item> the number of Bravais flocks in the family.</Item>
+</List>
+For details see <Cite Key="BBNWZ78"/>.
+<Example><![CDATA[
+gap> DisplayCrystalFamily( 4, 17 );
+#I Family XVII: cubic orthogonal; 2 free parameters;
+#I  Q-decomposition pattern 1+3; R-decomposition pattern 1+3;
+#I  2 crystal systems; 6 Bravais flocks
+gap> DisplayCrystalFamily( 4, 18 );
+#I Family XVIII: octagonal; 2 free parameters;
+#I  Q-irreducible; R-decomposition pattern 2+2;
+#I  1 crystal system; 1 Bravais flock
+gap> DisplayCrystalFamily( 4, 21 );
+#I Family XXI: di-isohexagonal orthogonal; 1 free parameter;
+#I  R-irreducible; 2 crystal systems; 2 Bravais flocks
+]]></Example>
+</Description>
+</ManSection>
+</Section>
+<Section Label="Crystal Systems">
+<Heading>Crystal Systems</Heading>
+<ManSection>
+<Func Name="NrCrystalSystems" Arg="dim"/>
+<Description>
+returns the number of crystal systems in case of dimension <A>dim</A>. It
+can be used to formulate loops over the crystal systems.
+<P/>
+There are 4, 7, and 33 crystal systems of dimension 2, 3, and 4,
+respectively.
+<Example><![CDATA[
+gap> n := NrCrystalSystems( 2 );
+4
+]]></Example>
+The following two functions are functions of crystal systems.
+<P/>
+Each crystal system is characterized by a pair (<A>dim</A>, <A>system</A>) where
+<A>dim</A>  is the associated dimension,  and  <A>system</A> is  the number of  the
+crystal system.
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="DisplayCrystalSystem" Arg="dim, system"/>
+<Description>
+displays for the specified crystal system essentially the same
+information as is provided for that system in Table 1 of
+<Cite Key="BBNWZ78"/>, namely
+<List>
+<Item> 
+    the number of <M>&QQ;</M>-classes in the crystal system and
+</Item>
+<Item> 
+    the identification number, i.&nbsp;e., the triple (<A>dim</A>, <A>system</A>,
+    <A>q-class</A>) described below, of the <M>&QQ;</M>-class that is the 
+    holohedry of the crystal system.  </Item>
+</List>
+For details see <Cite Key="BBNWZ78"/>.
+<Example><![CDATA[
+gap> for sys in [ 1 .. 4 ] do  DisplayCrystalSystem( 2, sys );  od;
+#I  Crystal system 1: 2 Q-classes; holohedry (2,1,2)
+#I  Crystal system 2: 2 Q-classes; holohedry (2,2,2)
+#I  Crystal system 3: 2 Q-classes; holohedry (2,3,2)
+#I  Crystal system 4: 4 Q-classes; holohedry (2,4,4)
+]]></Example>
+</Description>
+</ManSection>
+</Section>
+<Section Label="Q-Classes">
+<Heading>Q-Classes</Heading>
+<ManSection>
+<Func Name="NrQClassesCrystalSystem" Arg="dim, system"/>
+<Description>
+returns the number of <M>&QQ;</M>-classes within the given crystal system.
+It can be used to formulate loops over the <M>&QQ;</M>-classes.
+<P/>
+The following five functions are functions of <M>&QQ;</M>-classes.
+<P/>
+In general, the parameters characterizing a <M>&QQ;</M>-class will form a
+triple (<A>dim</A>, <A>system</A>, <A>q-class</A>) where <A>dim</A> is the associated
+dimension, <A>system</A> is the number of the associated crystal system,
+and <A>q-class</A> is the number of the <M>&QQ;</M>-class within the crystal
+system.  However, in case of dimensions 2 or 3, a <M>&QQ;</M>-class may also
+be characterized by a pair (<A>dim</A>, <A>IT-number</A>) where <A>IT-number</A> is
+the number in the International Tables for Crystallography
+<Cite Key="Hah95"/> of any space-group type lying in (a <M>&ZZ;</M>-class of) that
+<M>&QQ;</M>-class, or just by the Hermann-Mauguin symbol of any space-group
+type lying in (a <M>&ZZ;</M>-class of) that <M>&QQ;</M>-class.
+<P/>
+The Hermann-Mauguin symbols <Index>Hermann-Mauguin symbol</Index> which we
+use in &GAP; are the short Hermann-Mauguin symbols defined in the
+1983 edition of the International Tables <Cite Key="Hah95"/>, but any
+occurring indices are expressed by ordinary integers, and bars are
+replaced by minus signs.  For example, the Hermann-Mauguin symbol
+<A>P</A><M>\overline{4}2_1m</M> will be represented by the string <C>"P-421m"</C>.
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="DisplayQClass" Arg="dim, system, q-class"/>
+<Func Name="DisplayQClass" Label="for dim, IT-number" Arg="dim, IT-number"/>
+<Func Name="DisplayQClass" Label="for Hermann-Mauguin-symbol" Arg="Hermann-Mauguin-symbol"/>
+<Description>
+displays for the specified <M>&QQ;</M>-class essentially the same information
+as is provided for that <M>&QQ;</M>-class in Table 1 of <Cite Key="BBNWZ78"/>
+(except for the defining relations given there), namely
+<List>
+<Item> the size of the groups in the <M>&QQ;</M>-class,
+</Item>
+<Item> the isomorphism type of the groups in the <M>&QQ;</M>-class,
+</Item>
+<Item> the Hurley pattern,
+</Item>
+<Item> the rational constituents,
+</Item>
+<Item> the number of <M>&ZZ;</M>-classes in the <M>&QQ;</M>-class, and
+</Item>
+<Item> the number of space-group types in the <M>&QQ;</M>-class.</Item>
+</List>
+For details see <Cite Key="BBNWZ78"/>.
+<Example><![CDATA[
+gap> DisplayQClass( "p2" );
+#I   Q-class H (2,1,2): size 2; isomorphism type 2.1 = C2;
+#I    Q-constituents 2*(2,1,2); cc; 1 Z-class; 1 space group
+gap> DisplayQClass( "R-3" );
+#I   Q-class (3,5,2): size 6; isomorphism type 6.1 = C6;
+#I    Q-constituents (3,1,2)+(3,4,3); ncc; 2 Z-classes; 2 space grps
+gap> DisplayQClass( 3, 195 );
+#I   Q-class (3,7,1): size 12; isomorphism type 12.5 = A4;
+#I    C-irreducible; 3 Z-classes; 5 space grps
+gap> DisplayQClass( 4, 27, 4 );
+#I   Q-class H (4,27,4): size 20; isomorphism type 20.3 = D10xC2;
+#I    Q-irreducible; 1 Z-class; 1 space group
+gap> DisplayQClass( 4, 29, 1 );
+#I  *Q-class (4,29,1): size 18; isomorphism type 18.3 = D6xC3;
+#I    R-irreducible; 3 Z-classes; 5 space grps
+]]></Example>
+Note in the preceding examples that, as pointed out above, the term
+<Q>size</Q> denotes the order of a representative group of the specified
+<M>&QQ;</M>-class and, of course, not the (infinite) class length.
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="FpGroupQClass" Arg="dim, system, q-class"/>
+<Func Name="FpGroupQClass" Label="for dim, IT-number" Arg="dim, IT-number"/>
+<Func Name="FpGroupQClass" Label="for Hermann-Mauguin-symbol" Arg="Hermann-Mauguin-symbol"/>
+<Description>
+returns a finitely presented group <A>F</A>, say, which is isomorphic to
+the groups in the specified <M>&QQ;</M>-class.
+<P/>
+The presentation of that group is the same as the corresponding
+presentation given in Table 1 of <Cite Key="BBNWZ78"/> except for the fact
+that its generators are listed in reverse order.  The reason for this
+change is that, whenever the group in question is solvable, the
+resulting generators form a pcgs (as defined in section <Ref Chap="Polycyclic Groups" BookName="ref"/> in the reference manual of &GAP;) if they are numbered 
+<Q>from top to bottom</Q>, and the presentation is a 
+power-commutator presentation.  The <C>PcGroupQClass</C> function described 
+next will make use of this fact in order to construct a pc group 
+isomorphic to <A>F</A>.
+<P/>
+Note that, for any <M>&ZZ;</M>-class  in the  specified <M>&QQ;</M>-class,  the  matrix
+group  returned by the <C>MatGroupZClass</C>  function (see below) not only is
+isomorphic to <A>F</A>, but also its  generators satisfy the defining relators
+of <A>F</A>.
+<P/>
+Besides the usual components, <A>F</A> will have an attribute
+<C>CrystCatRecord</C>, which is a record with component
+<C>parameters</C>, which keeps a list of the parameters
+that specify the given <M>&QQ;</M>-class.
+<Example><![CDATA[
+gap> F := FpGroupQClass( 4, 20, 3 );
+FpGroupQClass( 4, 20, 3 )
+gap> GeneratorsOfGroup( F );
+[ f1, f2 ]
+gap> RelatorsOfFpGroup( F );
+[ f1^2*f2^-3, f2^6, f2^-1*f1^-1*f2*f1*f2^-4 ]
+gap> Size( F );
+12
+gap> CrystCatRecord( F ).parameters;
+[ 4, 20, 3 ]
+]]></Example>
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="PcGroupQClass" Arg="dim, system, q-class"/>
+<Func Name="PcGroupQClass" Label="for dim, IT-number" Arg="dim, IT-number"/>
+<Func Name="PcGroupQClass" Label="for Hermann-Mauguin-symbol" Arg="Hermann-Mauguin-symbol"/>
+<Description>
+returns a pc group <M>P</M>, say, isomorphic to the groups in the
+specified <M>&QQ;</M>-class, if these groups are solvable, or the value
+<K>fail</K> (together with an appropriate warning), otherwise.
+<P/>
+<M>P</M> is constructed by first establishing a finitely presented group
+(as it would be returned by the <C>FpGroupQClass</C> function described
+above) and then constructing from it an isomorphic pc group.  If the
+underlying pcgs is not a prime orders pcgs (see section <Ref Chap="Polycyclic Groups" BookName="ref"/>), then it will be refined appropriately (and a warning will 
+be displayed).
+<P/>
+Besides the usual components, <A>P</A> will have an attribute
+<C>CrystCatRecord</C>, which is a record with component
+<C>parameters</C>, which saves a list of the parameters that specify 
+the given <M>&QQ;</M>-class.
+<Example><![CDATA[
+gap> P := PcGroupQClass( 4, 31, 3 );
+#I  Warning: a non-solvable group can't be represented as a pc group
+fail
+gap> P := PcGroupQClass( 4, 20, 3 );
+#I  Warning: the presentation has been extended to get a prime order pcgs
+PcGroupQClass( 4, 20, 3 )
+gap> GeneratorsOfGroup( P );
+[ f1, f2, f3 ]
+gap> Size( P );
+12
+gap> CrystCatRecord( P ).parameters;
+[ 4, 20, 3 ]
+]]></Example>
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="CharTableQClass" Arg="dim, system, q-class"/>
+<Func Name="CharTableQClass" Label="for dim, IT-number" Arg="dim, IT-number"/>
+<Func Name="CharTableQClass" Label="for Hermann-Mauguin-symbol" Arg="Hermann-Mauguin-symbol"/>
+<Description>
+returns the character table <M>T</M>, say, of a representative group of (a
+<M>&ZZ;</M>-class of) the specified <M>&QQ;</M>-class.
+<P/>
+Although the set of characters  can be considered as  an invariant of the
+specified <M>&QQ;</M>-class,  the resulting  table  will depend on  the order in
+which &GAP; sorts the conjugacy classes of  elements and the irreducible
+characters  and    hence,  in  general,   will  not   coincide  with  the
+corresponding table presented in <Cite Key="BBNWZ78"/>.
+<P/>
+<C>CharTableQClass</C> proceeds as follows.  If the groups in the given
+<M>&QQ;</M>-class are solvable, then it first calls the <C>PcGroupQClass</C> and
+<C>RefinedPcGroup</C> functions to get a suitable isomorphic pc group, and 
+then it calls the <C>CharacterTable</C> function to compute the
+character table of that pc group.  In the case of the five
+<M>&QQ;</M>-classes of dimension 4 whose groups are not solvable, it first
+calls the <C>FpGroupQClass</C> function to get an isomorphic finitely
+presented group, then it constructs a specially chosen faithful
+permutation representation of low degree for that group, and finally
+it determines the character table of the resulting permutation group
+again by calling the <C>CharacterTable</C> function.
+<P/>
+In general, the above strategy will be much more efficient than the
+alternative possibilities of calling the <C>CharacterTable</C> function for a
+finitely presented group provided by the <C>FpGroupQClass</C> function or
+for a matrix group provided by the <C>MatGroupZClass</C> function.
+<Example><![CDATA[
+gap> T := CharTableQClass( 4, 20, 3 );;
+gap> CharacterDegrees( T );
+[ [ 1, 4 ], [ 2, 2 ] ]
+]]></Example>
+</Description>
+</ManSection>
+</Section>
+<Section Label="Z-Classes">
+<Heading>Z-Classes</Heading>
+<ManSection>
+<Func Name="NrZClassesQClass" Arg="dim, system, q-class"/>
+<Func Name="NrZClassesQClass" Label="for dim, IT-number" Arg="dim, IT-number"/>
+<Func Name="NrZClassesQClass" Label="for Hermann-Mauguin-symbol" Arg="Hermann-Mauguin-symbol"/>
+<Description>
+returns the number of <M>&ZZ;</M>-classes within the given <M>&QQ;</M>-class. It can
+be used to formulate loops over the <M>&ZZ;</M>-classes.
+<P/>
+The following functions are functions of <M>&ZZ;</M>-classes.
+<P/>
+In general, the parameters characterizing a <M>&ZZ;</M>-class will form a
+quadruple (<A>dim</A>, <A>system</A>, <A>q-class</A>, <A>z-class</A>) where <A>dim</A> is the
+associated dimension, <A>system</A> is the number of the associated crystal
+system, <A>q-class</A> is the number of the associated <M>&QQ;</M>-class within
+the crystal system, and <A>z-class</A> is the number of the <M>&ZZ;</M>-class
+within the <M>&QQ;</M>-class.  However, in case of dimensions 2 or 3, a
+<M>&ZZ;</M>-class may also be characterized by a pair (<A>dim</A>, <A>IT-number</A>)
+where <A>IT-number</A> is the number in the International Tables
+<Cite Key="Hah95"/> of any space-group type lying in that <M>&ZZ;</M>-class, or just
+by the Hermann-Mauguin symbol of any space-group type lying in that
+<M>&ZZ;</M>-class.
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="DisplayZClass" Arg="dim, system, q-class, z-class"/>
+<Func Name="DisplayZClass" Label="for dim, IT-number" Arg="dim, IT-number"/>
+<Func Name="DisplayZClass" Label="for Hermann-Mauguin-symbol" Arg="Hermann-Mauguin-symbol"/>
+<Description>
+displays for the specified <M>&ZZ;</M>-class essentially the same information
+as is provided for that <M>&ZZ;</M>-class in Table 1 of <Cite Key="BBNWZ78"/>
+(except for the generating matrices of a class representative group
+given there), namely
+<List>
+<Item> for  dimensions 2 and 3, the  Hermann-Mauguin symbol of a
+    representative space-group type  which belongs  to that <M>&ZZ;</M>-class,
+</Item>
+<Item> the Bravais type,
+</Item>
+<Item> some decomposability information,
+</Item>
+<Item> the number of space-group types belonging to the <M>&ZZ;</M>-class,
+</Item>
+<Item> the size of the associated cohomology group.</Item>
+</List>
+For details see <Cite Key="BBNWZ78"/>.
+<Example><![CDATA[
+gap> DisplayZClass( 2, 3 );
+#I    Z-class (2,2,1,1) = Z(pm): Bravais type II/I; fully Z-reducible;
+#I     2 space groups; cohomology group size 2
+gap> DisplayZClass( "F-43m" );
+#I    Z-class (3,7,4,2) = Z(F-43m): Bravais type VI/II; Z-irreducible;
+#I     2 space groups; cohomology group size 2
+gap> DisplayZClass( 4, 2, 3, 2 );
+#I    Z-class B (4,2,3,2): Bravais type II/II; Z-decomposable;
+#I     2 space groups; cohomology group size 4
+gap> DisplayZClass( 4, 21, 3, 1 );
+#I   *Z-class (4,21,3,1): Bravais type XVI/I; Z-reducible;
+#I     1 space group; cohomology group size 1
+]]></Example>
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="MatGroupZClass" Arg="dim, system, q-class, z-class"/>
+<Func Name="MatGroupZClass" Label="for dim, IT-number" Arg="dim, IT-number"/>
+<Func Name="MatGroupZClass" Label="for Hermann-Mauguin-symbol" Arg="Hermann-Mauguin-symbol"/>
+<Description>
+returns a <M>\dim \times \dim</M> matrix group <A>M</A>, say, which is a
+representative of the specified <M>&ZZ;</M>-class.  Its generators satisfy
+the defining relators of the finitely presented group which may be
+computed by calling the <C>FpGroupQClass</C> function (see above) for the
+<M>&QQ;</M>-class which contains the given <M>&ZZ;</M>-class.
+<P/>
+The generators of <A>M</A> are the same matrices as those given  in Table 1 of
+<Cite Key="BBNWZ78"/>. Note, however, that they will  be listed in reverse order
+to  keep them  in parallel  to  the abstract  generators provided by  the
+<C>FpGroupQClass</C> function (see above).
+<P/>
+Besides the usual components, <A>M</A> will have an attribute
+<C>CrystCatRecord</C>, which is a record with two components.  The
+first component is <C>parameters</C>, which saves a list of the parameters
+that specify the given <M>&ZZ;</M>-class. The second component is
+<C>conjugator</C>, whose value is the identity element of <A>M</A>. Its purpose
+is to make the resulting record consistent with those returned by
+the <C>NormalizerZClass</C> or <C>ZClassRepsDadeGroup</C> functions described
+below.
+<Example><![CDATA[
+gap> M := MatGroupZClass( 4, 20, 3, 1 );
+MatGroupZClass( 4, 20, 3, 1 )
+gap> for g in GeneratorsOfGroup( M ) do
+>  Print( "\n" ); PrintArray( g ); od; Print( "\n" );
+
+[ [   0,   1,   0,   0 ],
+  [  -1,   0,   0,   0 ],
+  [   0,   0,  -1,  -1 ],
+  [   0,   0,   0,   1 ] ]
+
+[ [  -1,   0,   0,   0 ],
+  [   0,  -1,   0,   0 ],
+  [   0,   0,  -1,  -1 ],
+  [   0,   0,   1,   0 ] ]
+
+gap> Size( M );
+12
+gap> CrystCatRecord( M ).parameters;
+[ 4, 20, 3, 1 ]
+]]></Example>
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="NormalizerZClass" Arg="dim, system, q-class, z-class"/>
+<Func Name="NormalizerZClass" Label="for dim, IT-number" Arg="dim, IT-number"/>
+<Func Name="NormalizerZClass" Label="for Hermann-Mauguin-symbol" Arg="Hermann-Mauguin-symbol"/>
+<Description>
+returns the normalizer <A>N</A>, say, in <M>GL(\dim,&ZZ;)</M> of the representative
+<M>\dim \times \dim</M> matrix group which is constructed by the
+<C>MatGroupZClass</C> function (see above).
+<P/>
+If the size of <A>N</A> is finite, then <A>N</A> again lies in some <M>&ZZ;</M>-class.
+In this case, <A>N</A> will have an attribute <C>CrystCatRecord</C>,
+which is a record with two components, <C>parameters</C> and <C>conjugator</C>.
+These contain, respectively, the list of parameters of that
+<M>&ZZ;</M>-class, and a matrix <M>g \in GL(\dim,&ZZ;)</M>, such that <M>N = g^{-1} R g</M>,
+where <M>R</M> is the representative group of that <M>&ZZ;</M>-class.
+<Example><![CDATA[
+gap> N := NormalizerZClass( 4, 20, 3, 1 );
+NormalizerZClass( 4, 20, 3, 1 )
+gap> for g in GeneratorsOfGroup( N ) do
+>  Print( "\n" ); PrintArray( g ); od; Print( "\n" );
+
+[ [   1,   0,   0,   0 ],
+  [   0,   1,   0,   0 ],
+  [   0,   0,   1,   0 ],
+  [   0,   0,  -1,  -1 ] ]
+
+[ [   1,   0,   0,   0 ],
+  [   0,  -1,   0,   0 ],
+  [   0,   0,  -1,  -1 ],
+  [   0,   0,   1,   0 ] ]
+
+[ [   0,   1,   0,   0 ],
+  [  -1,   0,   0,   0 ],
+  [   0,   0,   1,   0 ],
+  [   0,   0,   0,   1 ] ]
+
+[ [  -1,   0,   0,   0 ],
+  [   0,  -1,   0,   0 ],
+  [   0,   0,  -1,   0 ],
+  [   0,   0,   0,  -1 ] ]
+
+gap> Size( N );
+96
+gap> CrystCatRecord( N ).parameters;
+[ 4, 20, 22, 1 ]
+gap> CrystCatRecord( N ).conjugator = One( N );
+true
+gap> L := NormalizerZClass( 3, 42 );
+NormalizerZClass( 3, 3, 2, 4 )
+gap> Size( L );
+16
+gap> CrystCatRecord( L ).parameters;
+[ 3, 4, 7, 2 ]
+gap> CrystCatRecord( L ).conjugator;
+[ [ 0, 0, -1 ], [ 1, 0, 0 ], [ 0, -1, -1 ] ]
+gap> M := NormalizerZClass( "C2/m" );
+<matrix group of size infinity with 5 generators>
+gap> Size( M );
+infinity
+gap> HasCrystCatRecord( M );
+false
+]]></Example>
+</Description>
+</ManSection>
+</Section>
+<Section Label="Dade groups">
+<Heading>Dade groups</Heading>
+Some of the <M>&ZZ;</M>-classes  of   dimension <A>d</A>, say, are <Q>maximal</Q>  in
+the sense  that the groups in these  classes are maximal finite subgroups
+of <M>GL(d,&ZZ;)</M>.  Generalizing a term which is  being used for dimension 4,
+we call the representatives   of these  maximal <M>&ZZ;</M>-classes  the <E>Dade
+groups</E> of dimension <M>d</M>.
+<ManSection>
+<Func Name="NrDadeGroups" Arg="dim"/>
+<Description>
+returns the number of Dade groups of dimension <A>dim</A>. It can be used
+to formulate loops over the Dade groups.
+<P/>
+There are 2, 4, and 9 Dade groups of dimension 2, 3, and 4, respectively.
+<Example><![CDATA[
+gap> NrDadeGroups( 4 );
+9
+]]></Example>
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="DadeGroup" Arg="dim, n"/>
+<Description>
+returns the <A>n</A>th Dade group of dimension <A>dim</A>.
+<Example><![CDATA[
+gap> D := DadeGroup( 4, 7 );
+MatGroupZClass( 4, 31, 7, 2 )
+]]></Example>
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="DadeGroupNumbersZClass" Arg="dim, system, q-class, z-class"/>
+<Func Name="DadeGroupNumbersZClass" Label="for dim, IT-number" Arg="dim, IT-number"/>
+<Func Name="DadeGroupNumbersZClass" Label="for Hermann-Mauguin-symbol" Arg="Hermann-Mauguin-symbol"/>
+<Description>
+returns the set of all those integers <M>n_i</M> for which the <M>n_i</M>th Dade
+group of dimension <A>dim</A> contains a subgroup which, in <M>GL(\dim,&ZZ;)</M>,
+is conjugate to the representative group of the given <M>&ZZ;</M>-class.
+<Example><![CDATA[
+gap> dadeNums := DadeGroupNumbersZClass( 4, 4, 1, 2 );
+[ 1, 5, 8 ]
+gap> for d in dadeNums do
+>     D := DadeGroup( 4, d );
+>     Print( D, " of size ", Size( D ), "\n" );
+> od;
+MatGroupZClass( 4, 20, 22, 1 ) of size 96
+MatGroupZClass( 4, 30, 13, 1 ) of size 288
+MatGroupZClass( 4, 32, 21, 1 ) of size 384
+]]></Example>
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="ZClassRepsDadeGroup" Arg="dim, system, q-class, z-class, n"/>
+<Func Name="ZClassRepsDadeGroup" Label="for dim, IT-number, n" Arg="dim, IT-number, n"/>
+<Func Name="ZClassRepsDadeGroup" Label="for Hermann-Mauguin-symbol, n" Arg="Hermann-Mauguin-symbol, n"/>
+<Description>
+determines in the <A>n</A>th Dade group of dimension <A>dim</A> all those
+conjugacy classes whose groups are, in <M>GL(\dim,&ZZ;)</M>, conjugate to the
+<M>&ZZ;</M>-class representative group <A>R</A>, say, of the given <M>&ZZ;</M>-class.  It
+returns a list of representative groups of these conjugacy classes.
+<P/>
+Let <A>M</A> be any group in the resulting list.  <A>M</A> then has an attribute
+<C>CrystCatRecord</C>, which is a record with two components. The
+component <C>parameters</C> is the list of parameters of the <M>&ZZ;</M>-class of
+<A>R</A>, and <C>conjugator</C> is a suitable matrix <A>g</A> from <M>GL(\dim,&ZZ;)</M>,
+respectively, such that <A>M</A> equals <M>g^{-1} R g</M>.
+<Example><![CDATA[
+gap> DadeGroupNumbersZClass( 2, 2, 1, 2 );
+[ 1, 2 ]
+gap> ZClassRepsDadeGroup( 2, 2, 1, 2, 1 );
+[ MatGroupZClass( 2, 2, 1, 2 )^[ [ 0, 1 ], [ -1, 0 ] ] ]
+gap> ZClassRepsDadeGroup( 2, 2, 1, 2, 2 );
+[ MatGroupZClass( 2, 2, 1, 2 )^[ [ 1, -1 ], [ 0, -1 ] ], 
+  MatGroupZClass( 2, 2, 1, 2 )^[ [ 1, 0 ], [ -1, 1 ] ] ]
+gap> R := last[2];;
+gap> CrystCatRecord( R ).parameters;
+[ 2, 2, 1, 2 ]
+gap> CrystCatRecord( R ).conjugator;
+[ [ 1, 0 ], [ -1, 1 ] ]
+]]></Example>
+</Description>
+</ManSection>
+</Section>
+<Section Label="Space groups and space group types">
+<Heading>Space groups and space group types</Heading>
+<ManSection>
+<Func Name="NrSpaceGroupTypesZClass" Arg="dim, system, q-class, z-class"/>
+<Func Name="NrSpaceGroupTypesZClass" Label="for dim, IT-number" Arg="dim, IT-number"/>
+<Func Name="NrSpaceGroupTypesZClass" Label="for Hermann-Mauguin-symbol" Arg="Hermann-Mauguin-symbol"/>
+<Description>
+returns the number of space-group types within the given <M>&ZZ;</M>-class.
+It can be used to formulate loops over the space-group types.
+<Example><![CDATA[
+gap> N := NrSpaceGroupTypesZClass( 4, 4, 1, 1 );
+13
+]]></Example>
+The following functions are functions of space-group types.
+<P/>
+In general, the parameters characterizing a space-group type will form
+a quintuple (<A>dim</A>, <A>system</A>, <A>q-class</A>, <A>z-class</A>, <A>sg-type</A>) where
+<A>dim</A> is the associated dimension, <A>system</A> is the number of the
+associated crystal system, <A>q-class</A> is the number of the associated
+<M>&QQ;</M>-class within the crystal system, <A>z-class</A> is the number of the
+<M>&ZZ;</M>-class within the <M>&QQ;</M>-class, and <A>sg-type</A> is the space-group
+type within the <M>&ZZ;</M>-class.  However, in case of dimensions 2 or 3,
+you may instead specify a <M>&ZZ;</M>-class by a pair (<A>dim</A>, <A>IT-number</A>)
+or by its Hermann-Mauguin symbol (as described above).  Then the
+function will handle the first space-group type within that
+<M>&ZZ;</M>-class, i.e., <A>sg-type</A> = 1, that is, the corresponding
+symmorphic space group (split extension).
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="DisplaySpaceGroupType" Arg="dim, system, q-class, z-class, sg-type"/>
+<Func Name="DisplaySpaceGroupType" Label="for dim, IT-number" Arg="dim, IT-number"/>
+<Func Name="DisplaySpaceGroupType" Label="for Hermann-Mauguin-symbol" Arg="Hermann-Mauguin-symbol"/>
+<Description>
+displays for the specified space-group type some of the information
+which is provided for that space-group type in Table 1 of
+<Cite Key="BBNWZ78"/>, namely
+<List>
+<Item> the orbit size associated with that space-group type and,
+</Item>
+<Item> for dimensions  2 and 3,  the <A>IT-number</A>  and  the 
+    Hermann-Mauguin symbol.</Item>
+</List>
+For details see <Cite Key="BBNWZ78"/>.
+<Example><![CDATA[
+gap> DisplaySpaceGroupType( 2, 17 );
+#I     Space-group type (2,4,4,1,1); IT(17) = p6mm; orbit size 1
+gap> DisplaySpaceGroupType( "Pm-3" );
+#I     Space-group type (3,7,2,1,1); IT(200) = Pm-3; orbit size 1
+gap> DisplaySpaceGroupType( 4, 32, 10, 2, 4 );
+#I    *Space-group type (4,32,10,2,4); orbit size 18
+gap> DisplaySpaceGroupType( 3, 6, 1, 1, 4 );
+#I    *Space-group type (3,6,1,1,4); IT(169) = P61, IT(170) = P65;
+#I      orbit size 2; fp-free
+]]></Example>
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="DisplaySpaceGroupGenerators" Arg="dim, system, q-class, z-class, sg-type"/>
+<Func Name="DisplaySpaceGroupGenerators" Label="for dim, IT-number" Arg="dim, IT-number"/>
+<Func Name="DisplaySpaceGroupGenerators" Label="for Hermann-Mauguin-symbol" Arg="Hermann-Mauguin-symbol"/>
+<Description>
+displays the non-translation generators of a representative space
+group of the specified space-group type without actually constructing
+that matrix group. The generators are given in the representation
+acting from the left on column vectors.
+<P/>
+In more detail: Let <A>n</A> = <A>dim</A> be the given dimension, and let <M>M_1,
+\ldots, M_r</M> be the generators of the representative <M>n \times n</M>
+matrix group of the given <M>&ZZ;</M>-class (this is the group which you will
+get if you call the <C>MatGroupZClass</C> function (see above) for that
+<M>&ZZ;</M>-class).  Then, for the given space-group type, the 
+<C>SpaceGroupOnLeftBBNWZ</C> function described below will construct as 
+representative of that space-group type an <M>(n+1) \times (n+1)</M> matrix 
+group which is generated by the <A>n</A> translations which are induced 
+by the (standard) basis vectors of the <A>n</A>-dimensional Euclidean space, 
+and <A>r</A> additional matrices <M>S_1, \ldots, S_r</M> of the form <M>S_i =
+\left[\matrix{ M_i &amp; t_i \cr 0 &amp; 1 } \right]</M>, where the <M>n \times n</M>
+submatrices <M>M_i</M> are as defined above, and the <M>t_i</M> are <A>n</A>-columns
+with rational entries.  The <C>DisplaySpaceGroupGenerators</C> function
+saves time by not constructing the group, but just displaying the <M>r</M>
+matrices <M>S_1,\ldots, S_r</M>.
+<Example><![CDATA[
+gap> DisplaySpaceGroupGenerators( "P61" );
+#I  Non-translation generators of SpaceGroupOnLeftBBNWZ( 3, 6, 1, 1, 4 )
+
+[ [   -1,    0,    0,    0 ],
+  [    0,   -1,    0,    0 ],
+  [    0,    0,    1,  1/2 ],
+  [    0,    0,    0,    1 ] ]
+
+[ [    0,   -1,    0,    0 ],
+  [    1,   -1,    0,    0 ],
+  [    0,    0,    1,  1/3 ],
+  [    0,    0,    0,    1 ] ]
+
+]]></Example>
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="SpaceGroupOnLeftBBNWZ" Arg="dim, system, q-class, z-class, sg-type"/>
+<Func Name="SpaceGroupOnLeftBBNWZ" Label="for dim, IT-number" Arg="dim, IT-number"/>
+<Func Name="SpaceGroupOnLeftBBNWZ" Label="for Hermann-Mauguin-symbol" Arg="Hermann-Mauguin-symbol"/>
+<Description>
+returns a representative, <A>S</A>, of the space group type specified by 
+the arguments. <A>S</A> is returned in the form of an <C>AffineCrystGroupOnLeft</C>,
+which acts from the left on column vectors (see also the description
+of the <C>DisplaySpaceGroupGenerators</C> function above). The package
+&Cryst; provides methods for the computation with space groups.
+<Example><![CDATA[
+gap> S := SpaceGroupOnLeftBBNWZ( "P61" );
+SpaceGroupOnLeftBBNWZ( 3, 6, 1, 1, 4 )
+gap> for s in GeneratorsOfGroup( S ) do
+>  Print( "\n" ); PrintArray( s ); od; Print( "\n" );
+
+[ [   -1,    0,    0,    0 ],
+  [    0,   -1,    0,    0 ],
+  [    0,    0,    1,  1/2 ],
+  [    0,    0,    0,    1 ] ]
+
+[ [    0,   -1,    0,    0 ],
+  [    1,   -1,    0,    0 ],
+  [    0,    0,    1,  1/3 ],
+  [    0,    0,    0,    1 ] ]
+
+[ [  1,  0,  0,  1 ],
+  [  0,  1,  0,  0 ],
+  [  0,  0,  1,  0 ],
+  [  0,  0,  0,  1 ] ]
+
+[ [  1,  0,  0,  0 ],
+  [  0,  1,  0,  1 ],
+  [  0,  0,  1,  0 ],
+  [  0,  0,  0,  1 ] ]
+
+[ [  1,  0,  0,  0 ],
+  [  0,  1,  0,  0 ],
+  [  0,  0,  1,  1 ],
+  [  0,  0,  0,  1 ] ]
+
+gap> CrystCatRecord( S ).parameters;
+[ 3, 6, 1, 1, 4 ]
+]]></Example>
+The resulting group has an attribute <C>CrystCatRecord</C>, whose component
+<C>parameters</C> specifies the given space-group type.
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="SpaceGroupOnRightBBNWZ" Arg="dim, system, q-class, z-class, sg-type"/>
+<Func Name="SpaceGroupOnRightBBNWZ" Label="for dim, IT-number" Arg="dim, IT-number"/>
+<Func Name="SpaceGroupOnRightBBNWZ" Label="for Hermann-Mauguin-symbol" Arg="Hermann-Mauguin-symbol"/>
+<Func Name="SpaceGroupOnRightBBNWZ" Label="for S" Arg="S"/>
+<Description>
+returns a representative, <A>T</A>, of the space group type specified by 
+the arguments. <A>T</A> is returned in the form of an <C>AffineCrystGroupOnRight</C>,
+which acts from the right on row vectors. The generators of <A>T</A> are the 
+transposed generators (in the same order) of the corresponding 
+<C>SpaceGroupOnLeftBBNWZ</C>, <A>S</A>, specified by the same arguments.
+The space group <A>S</A> is also accepted as argument. The package
+&Cryst; provides methods for the computation with space groups.
+<Example><![CDATA[
+gap> T := SpaceGroupOnRightBBNWZ( S );
+SpaceGroupOnRightBBNWZ( 3, 6, 1, 1, 4 )
+gap> for m in GeneratorsOfGroup( T ) do
+>  Print( "\n" ); PrintArray( m ); od; Print( "\n" );
+
+[ [   -1,    0,    0,    0 ],
+  [    0,   -1,    0,    0 ],
+  [    0,    0,    1,    0 ],
+  [    0,    0,  1/2,    1 ] ]
+
+[ [    0,    1,    0,    0 ],
+  [   -1,   -1,    0,    0 ],
+  [    0,    0,    1,    0 ],
+  [    0,    0,  1/3,    1 ] ]
+
+[ [  1,  0,  0,  0 ],
+  [  0,  1,  0,  0 ],
+  [  0,  0,  1,  0 ],
+  [  1,  0,  0,  1 ] ]
+
+[ [  1,  0,  0,  0 ],
+  [  0,  1,  0,  0 ],
+  [  0,  0,  1,  0 ],
+  [  0,  1,  0,  1 ] ]
+
+[ [  1,  0,  0,  0 ],
+  [  0,  1,  0,  0 ],
+  [  0,  0,  1,  0 ],
+  [  0,  0,  1,  1 ] ]
+
+]]></Example>
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="SpaceGroupBBNWZ" Arg="dim, system, q-class, z-class, sg-type"/>
+<Func Name="SpaceGroupBBNWZ" Label="for dim, IT-number" Arg="dim, IT-number"/>
+<Func Name="SpaceGroupBBNWZ" Label="for Hermann-Mauguin-symbol" Arg="Hermann-Mauguin-symbol"/>
+<Description>
+calls either <C>SpaceGroupOnLeftBBNWZ</C> or <C>SpaceGroupOnRightBBNWZ</C>
+with the same arguments, depending on the value of the variable
+<C>CrystGroupDefaultAction</C>.
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="FpGroupSpaceGroupBBNWZ" Arg="S"/>
+<Description>
+returns a finitely presented group <A>G</A>, say, which is isomorphic to
+<A>S</A>, where <A>S</A> is expected to be a space group from the BBNWZ
+catalog (acting from the left or from the right).  It is chosen such
+that there is an isomorphism from <A>G</A> to <A>S</A> which maps each generator
+of <A>G</A> onto the corresponding generator of <A>S</A>.  This means, in
+particular, that the matrix generators of <A>S</A> satisfy the relators of
+<A>G</A>. If the factor group of <A>S</A> by its translation normal subgroup is
+solvable, then the presentation returned is a polycyclic power
+commutator presentation.
+<Example><![CDATA[
+gap> G := FpGroupSpaceGroupBBNWZ( S );    
+FpGroupSpaceGroupOnLeftBBNWZ( 3, 6, 1, 1, 4 )
+gap> for rel in RelatorsOfFpGroup( G ) do Print( rel, "\n" ); od;
+g1^2*g5^-1
+g2^3*g5^-1
+g2^-1*g1^-1*g2*g1
+g3^-1*g1^-1*g3*g1*g3^2
+g3^-1*g2^-1*g3*g2*g4*g3^2
+g4^-1*g1^-1*g4*g1*g4^2
+g4^-1*g2^-1*g4*g2*g4*g3^-1
+g4^-1*g3^-1*g4*g3
+g5^-1*g1^-1*g5*g1
+g5^-1*g2^-1*g5*g2
+g5^-1*g3^-1*g5*g3
+g5^-1*g4^-1*g5*g4
+gap> # Verify that the matrix generators of S satisfy the relators of G.
+gap> ForAll( RelatorsOfFpGroup( G ), rel -> One(S) =
+>  MappedWord( rel, FreeGeneratorsOfFpGroup(G), GeneratorsOfGroup(S) ) );
+true
+]]></Example>
+</Description>
+</ManSection>
+</Section>
+</Chapter>
