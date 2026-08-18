@@ -1,3 +1,7 @@
+Version 1.1.12
+
+  - converted manual to GAPDoc (thanks to fingolfin for converting)
+
 Version 1.1.11
 
   - adjusted tests to new GAP version
