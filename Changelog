@@ -1,3 +1,7 @@
+Version 1.1.13
+
+  - fixed links in manual
+
 Version 1.1.12
 
   - converted manual to GAPDoc (thanks to fingolfin for converting)

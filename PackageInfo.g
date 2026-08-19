@@ -9,9 +9,9 @@ PackageName := "CrystCat",
 
 Subtitle := "The crystallographic groups catalog",
 
-Version := "1.1.12",
+Version := "1.1.13",
 
-Date := "18/08/2026", # dd/mm/yyyy format
+Date := "19/08/2026", # dd/mm/yyyy format
 
 License := "GPL-2.0-or-later",
 

@@ -1,5 +1,5 @@
 <?php 
-  $CrystCat_Version = '1.1.12'; 
-  $CrystCat_Date    = '18 Aug 2026';
+  $CrystCat_Version = '1.1.13'; 
+  $CrystCat_Date    = '19 Aug 2026';
   $CrystCat_Size    = '1653 kB';
 ?>
